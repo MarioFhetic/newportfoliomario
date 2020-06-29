@@ -6,6 +6,13 @@ import { useStaticQuery, graphql } from "gatsby"
 import { createGlobalStyle, ThemeProvider } from "styled-components" //Theme Provider pour nos différents thèmes
 import { normalize } from "styled-normalize"
 
+// Components
+
+import Header from "./header"
+
+// Context
+import { useGlobalStateContext } from "../context/globalContext"
+
 const GlobalStyle = createGlobalStyle`
 ${normalize}
 * {
@@ -24,7 +31,9 @@ body {
   background: ${props => props.theme.background};
   overscroll-behavior: none;
   overflow-x: hidden;
-}
+  color: ${props => props.theme.text};
+
+ }
 `
 
 const Layout = ({ children }) => {
@@ -49,9 +58,12 @@ const Layout = ({ children }) => {
     text: "#000",
   }
 
+  const { currentTheme } = useGlobalStateContext()
+
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
+      <Header />
       <main>{children}</main>
     </ThemeProvider>
   )

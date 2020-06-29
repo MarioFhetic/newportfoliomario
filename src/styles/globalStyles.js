@@ -7,6 +7,7 @@ export const Container = styled.div`
   position: relative;
   width: auto;
   height: 100%;
+  background-color: pink;
   @media (min-width: 1024px) {
     max-width: 960px;
   }
@@ -24,4 +25,32 @@ export const Container = styled.div`
       margin: 0;
       max-width: 100%;
     `}
+`
+
+export const Flex = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: blue;
+
+  ${props =>
+    props.spaceBetween &&
+    css`
+      justify-content: space-between;
+    `};
+  ${props =>
+    props.flexEnd &&
+    css`
+      justify-content: flex-end;
+    `};
+  ${props =>
+    props.alignTop &&
+    css`
+      align-items: flex-start;
+    `};
+  ${props =>
+    props.noHeight &&
+    css`
+      height: 0;
+    `};
 `
