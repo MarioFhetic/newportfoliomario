@@ -31,7 +31,6 @@ body {
   background: ${props => props.theme.background};
   overscroll-behavior: none;
   overflow-x: hidden;
-  color: ${props => props.theme.text};
 
  }
 `
