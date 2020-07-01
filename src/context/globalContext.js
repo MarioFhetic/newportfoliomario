@@ -15,8 +15,14 @@ const globalReducer = (state, action) => {
         currentTheme: action.theme,
       }
     }
+    case "CURSOR_TYPE": {
+      return {
+        ...state, // return le previous state
+        cursorType: action.cursorType,
+      }
+    }
     default: {
-      throw new Error("current theme pas définie")
+      throw new Error(`current theme pas définie ${action.type}`)
     }
   }
 }
@@ -32,6 +38,10 @@ export const GlobalProvider = (
       window.localStorage.getItem("theme") == null
         ? "light"
         : window.localStorage.getItem("theme"),
+    // On créer un initial state (ou type) pour la sourie
+    // Puis on va créer un tableau rempli de classe css que l'on choisira en fonction du cursorType
+    cursorType: false,
+    cursorStyles: ["pointer", "hovered"],
   })
 
   return (

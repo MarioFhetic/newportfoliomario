@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
+    "drei": "0.0.60",
     "framer-motion": "^1.10.2",
     "gatsby": "^2.19.45",
     "gatsby-image": "^2.2.44",
@@ -22,8 +23,11 @@
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-intersection-observer": "^8.26.1",
+    "react-spring": "^8.0.27",
+    "react-three-fiber": "^4.2.12",
     "styled-components": "^5.0.1",
-    "styled-normalize": "^8.0.7"
+    "styled-normalize": "^8.0.7",
+    "three": "^0.118.3"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
