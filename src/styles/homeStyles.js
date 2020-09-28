@@ -6,7 +6,7 @@ export const Header = styled.div`
   height: 100vh;
   width: 100%;
   position: relative;
-  margin-bottom: 296px;
+  /* margin-bottom: 296px; */
 `
 
 export const WebglContainer = styled.div`
@@ -34,4 +34,142 @@ export const HeaderLine = styled.span`
   font-size: 23rem;
   font-weight: 900;
   line-height: 0.76;
+`
+
+// ABOUT SECTION
+
+export const TitleAbout = styled.h1`
+  font-size: 4.5rem;
+  font-weight: 700;
+  background: ${props => props.theme.linear_gradient_title};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+export const SvgContent = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  /* background-color: red; */
+  svg {
+    width: 250px;
+    height: 250px;
+    rect {
+      fill: ${props => props.theme.color_svg};
+    }
+    polygon {
+      fill: ${props => props.theme.color_svg};
+    }
+    path {
+      fill: ${props => props.theme.color_svg};
+    }
+    circle {
+      fill: ${props => props.theme.color_svg};
+    }
+    ellipse {
+      fill: ${props => props.theme.color_svg};
+    }
+  }
+`
+export const TextContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 50%;
+  text-align: left;
+  p {
+    line-height: 150%;
+  }
+`
+
+// WORK SECTION
+
+export const HeaderWorks = styled.h1`
+  font-size: 4.5rem;
+  font-weight: 700;
+  background: ${props => props.theme.linear_gradient_title};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
+
+export const ProjectsList = styled.div`
+  /* background-color: pink; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  ul {
+    padding: 0;
+    li {
+      position: relative;
+      list-style: none;
+      font-size: 2rem;
+      text-transform: uppercase;
+      font-weight: 900;
+      height: 96px;
+      line-height: 96px;
+      /* overflow: hidden; */
+      /* padding-bottom: 1.2rem; */
+      /* .link {
+        color: ${props => props.theme.background};
+        position: relative;
+        display: flex;
+        align-items: center;
+        .arrow {
+          height: 76px;
+          margin-right: 8px;
+        }
+      }
+      svg {
+        width: 100px;
+        path {
+          fill: ${props => props.theme.background};
+        }
+      } */
+      .link
+      {
+        width: 100%;
+      }
+    }
+  }
+  span {
+    width: 150%;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    font-size: 0.9rem;
+    text-transform: initial !important;
+  }
+`
+
+export const NavVideos = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  left: 35%;
+  z-index: -3;
+  /* height: 100%; */
+  height: 75%;
+  /* width: 100%; */
+  width: 70%;
+  /* background: red; */
+  .reveal {
+    position: absolute;
+    width: 100%;
+    background: ${props => props.theme.background};
+    top: 0;
+    bottom: 0;
+    left: 0;
+    /* z-index: 10; */
+  }
+  .video {
+    /* background: yellow; */
+    position: absolute;
+    height: 100%;
+    margin: 0;
+    z-index: -1;
+    video {
+      height: 100%;
+      width: 100%;
+    }
+  }
 `

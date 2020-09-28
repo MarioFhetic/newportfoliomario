@@ -27,6 +27,11 @@ ${normalize}
   
 }
 
+a
+{
+  color: ${props => props.theme.primary_text_color};
+}
+
 div :focus
 {
   outline: none;
@@ -61,17 +66,25 @@ const Layout = ({ children }) => {
 
   // THEMES
 
+  // Color : #F5EFE1
+
   const darkTheme = {
     background: "#121212",
     primary_text_color: "#F9F9F9",
     primary_mouse_color: "#F9F9F9",
     hovered_mouse_color: "#7e57c2",
+    linear_gradient_title:
+      "linear-gradient(90deg, #F9F9F9 26.78%, #D5D5D5 100%);",
+    color_svg: "#F9F9F9",
   }
   const lightTheme = {
     background: "#F9F9F9",
     primary_text_color: "#121212",
     primary_mouse_color: "#121212",
     hovered_mouse_color: "#FF5E4D",
+    linear_gradient_title:
+      "linear-gradient(90deg, #121212 23.96%, #545454 100%);",
+    color_svg: "#121212",
   }
 
   const { currentTheme, cursorStyles } = useGlobalStateContext()

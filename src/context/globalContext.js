@@ -41,7 +41,7 @@ export const GlobalProvider = (
     // On créer un initial state (ou type) pour la sourie
     // Puis on va créer un tableau rempli de classe css que l'on choisira en fonction du cursorType
     cursorType: false,
-    cursorStyles: ["pointer", "hovered"],
+    cursorStyles: ["pointer", "hovered", "workHovered"],
   })
 
   return (
