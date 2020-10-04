@@ -44,7 +44,7 @@ const Header = ({ onCursor }) => {
     <HeaderNav>
       <Container>
         <Flex spaceBetween noHeight>
-          <Logo>Fayolle Mario</Logo>
+          {/* <Logo>Fayolle Mario</Logo> */}
           <Menu
             onClick={toggleTheme}
             onMouseEnter={() => onCursor("hovered")}

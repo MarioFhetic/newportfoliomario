@@ -23,13 +23,28 @@ const GlobalStyle = createGlobalStyle`
 ${normalize}
 * {
   text-decoration: none;
-  cursor: none;
-  
+  /* cursor: none; */
+}
+
+::-moz-selection { /* Code for Firefox */
+  background: ${props => props.theme.background};
+}
+
+::selection {
+  background: ${props => props.theme.background};
+}
+
+.no-scroll
+{
+  overflow-y: hidden;
 }
 
 a
 {
   color: ${props => props.theme.primary_text_color};
+}
+ul
+{
 }
 
 div :focus
@@ -71,20 +86,25 @@ const Layout = ({ children }) => {
   const darkTheme = {
     background: "#121212",
     primary_text_color: "#F9F9F9",
+    opposite_primary_text_color: "#121212",
     primary_mouse_color: "#F9F9F9",
     hovered_mouse_color: "#7e57c2",
     linear_gradient_title:
       "linear-gradient(90deg, #F9F9F9 26.78%, #D5D5D5 100%);",
     color_svg: "#F9F9F9",
+    first_panel_color: "#121212",
   }
   const lightTheme = {
-    background: "#F9F9F9",
+    background: "#F5EFE1",
     primary_text_color: "#121212",
+    opposite_primary_text_color: "#F9F9F9",
+
     primary_mouse_color: "#121212",
     hovered_mouse_color: "#FF5E4D",
     linear_gradient_title:
       "linear-gradient(90deg, #121212 23.96%, #545454 100%);",
     color_svg: "#121212",
+    first_panel_color: "#F5EFE1",
   }
 
   const { currentTheme, cursorStyles } = useGlobalStateContext()
@@ -102,7 +122,7 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <Cursor />
+      {/* <Cursor /> */}
       <Header onCursor={onCursor} />
       <main>{children}</main>
     </ThemeProvider>

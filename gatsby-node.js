@@ -35,12 +35,20 @@ exports.createPages = ({ actions, graphql }) => {
     `
   ).then(result => {
     // Create pages for each article.
-    result.data.allStrapiProjects.edges.forEach(({ node }) => {
+    result.data.allStrapiProjects.edges.forEach(({ node }, index) => {
       createPage({
         path: `/${node.url}`,
         component: path.resolve(`src/templates/project.js`),
         context: {
           id: node.id,
+          prev:
+            index === 0
+              ? null
+              : result.data.allStrapiProjects.edges[index - 1].node,
+          next:
+            index === result.data.allStrapiProjects.edges.length - 1
+              ? null
+              : result.data.allStrapiProjects.edges[index + 1].node,
         },
       })
     })

@@ -43,7 +43,7 @@ const HomeWorks = ({ onCursor, projects }) => {
                 })
               }
             >
-              <Link to={`${project.url}`}>
+              <Link to={`/${project.url}`}>
                 {/* <div>
                   <span className="arrow">
                     <svg

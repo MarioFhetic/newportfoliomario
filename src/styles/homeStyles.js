@@ -105,8 +105,9 @@ export const ProjectsList = styled.div`
       font-size: 2rem;
       text-transform: uppercase;
       font-weight: 900;
-      height: 96px;
-      line-height: 96px;
+      margin-bottom: 4rem;
+      /* height: 96px;
+      line-height: 96px; */
       /* overflow: hidden; */
       /* padding-bottom: 1.2rem; */
       /* .link {
@@ -128,6 +129,19 @@ export const ProjectsList = styled.div`
       .link
       {
         width: 100%;
+      }
+      a
+      {
+
+        &:hover
+        {
+          /* ${props => props.theme.primary_text_color}; */
+          -webkit-text-fill-color: ${props => props.theme.background};; 
+          -webkit-text-stroke-width: 1px;
+          -webkit--webkit-text-stroke-color: ${props =>
+            props.theme.primary_text_color};;
+
+        }
       }
     }
   }

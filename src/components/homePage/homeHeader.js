@@ -42,7 +42,7 @@ const HomeHeader = ({ onCursor }) => {
 
     // Pour render la blackbox :
     renderingCtx.globalCompositeOperation = "source-over" // default setting pour dessiner sur un canvas
-    renderingCtx.fillStyle = currentTheme === "dark" ? "#000000" : "#ffffff"
+    renderingCtx.fillStyle = currentTheme === "dark" ? "#000000" : "#fffbf6"
     renderingCtx.fillRect(0, 0, size.width, size.height) // grâce à notre hooks
 
     // Effacer le rectangle
@@ -92,9 +92,9 @@ const HomeHeader = ({ onCursor }) => {
 
   return (
     <Header>
-      {/* <WebglContainer>
+      <WebglContainer>
         <WebGL></WebGL>
-      </WebglContainer> */}
+      </WebglContainer>
       <Canvas ref={canvas} height={size.height} width={size.width} />
       {/* <HeaderTitle>
         <HeaderLine>DIG</HeaderLine>
