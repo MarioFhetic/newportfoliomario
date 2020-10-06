@@ -11,7 +11,7 @@ import { State } from "./state"
 // import { useSpring, a } from "react-spring/three"
 
 const Model = () => {
-  const gltf = useGLTFLoader("/scene.gltf", true)
+  const gltf = useGLTFLoader("/space.gltf", true)
   return <primitive object={gltf.scene} dispose={null} />
 }
 
@@ -32,20 +32,19 @@ const Lights = () => {
 const HTMLContent = () => {
   const ref = useRef()
   // useFrame est différent useEffect..ça vient de react-three-fiber
-  useFrame()
-  // () => ((ref.current.position.z += 0.3), (ref.current.rotation.y += 0.0001))
+  useFrame(() => (ref.current.rotation.y += 0.001))
 
   return (
     <Section factor={1.5} offset={1}>
       <group position={[-100, 150, 0]}>
-        <mesh ref={ref} position={[0, -5, 100]}>
+        <mesh ref={ref} position={[15, -35, 100]}>
           <Model />
         </mesh>
-        <HTML>
+        {/* <HTML>
           <div>
             <div>hello</div>
           </div>
-        </HTML>
+        </HTML> */}
       </group>
     </Section>
   )
@@ -61,7 +60,9 @@ const WebGL = () => {
             <div>hello</div>
           </div>
         </HTML> */}
-        <Suspense fallback={null}>{/* <HTMLContent></HTMLContent> */}</Suspense>
+        <Suspense fallback={null}>
+          <HTMLContent></HTMLContent>
+        </Suspense>
       </Canvas>
     </>
   )

@@ -4,6 +4,10 @@ import { HeaderNav, Menu, Logo } from "../styles/headerStyles"
 import { Container, Flex } from "../styles/globalStyles"
 import { motion } from "framer-motion"
 
+// MOON/SUN ICONS
+import { MoonSvg } from "../assets/svg/moon"
+import { SunSvg } from "../assets/svg/sun"
+
 // import GlobalStateContext
 // import GlobalDispatchContext => triger les changes et pouvoir changer le state
 import {
@@ -44,13 +48,16 @@ const Header = ({ onCursor }) => {
     <HeaderNav>
       <Container>
         <Flex spaceBetween noHeight>
-          {/* <Logo>Fayolle Mario</Logo> */}
+          <Logo>
+            <span>MF.</span>
+          </Logo>
           <Menu
             onClick={toggleTheme}
             onMouseEnter={() => onCursor("hovered")}
             onMouseLeave={() => onCursor(onCursor)}
           >
-            <Switch isOn={isOn} onClick={() => setIsOn(!isOn)} />
+            <div>{currentTheme === "dark" ? <MoonSvg /> : <SunSvg />}</div>
+            {/* <span>red</span> */}
           </Menu>
         </Flex>
       </Container>

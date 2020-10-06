@@ -10,6 +10,9 @@ import HomeContact from "../components/homePage/homeContact"
 // styledComponent
 import { HomePanelBackground } from "../styles/projectStyles"
 
+//
+import { AnimatePresence } from "framer-motion"
+
 //Data
 import { graphql } from "gatsby"
 
@@ -41,7 +44,10 @@ const HomePanels = () => {
           height: [0, window.innerHeight, 0],
           top: [0, 0, window.innerHeight],
         }}
-        exit={{ height: [0, window.innerHeight, 0], top: [null, 0, 0] }}
+        exit={{
+          height: [0, window.innerHeight, 0],
+          top: [null, 0, 0],
+        }}
         transition={{
           ...transition,
           duration: 2,
@@ -73,7 +79,7 @@ const IndexPage = props => {
       <HomeWorks onCursor={onCursor} projects={projects}></HomeWorks>
       <HomeAbout onCursor={onCursor}></HomeAbout>
       <HomeContact onCursor={onCursor}></HomeContact>
-      <HomePanels></HomePanels>
+      {/* <HomePanels></HomePanels> */}
     </Layout>
   )
 }

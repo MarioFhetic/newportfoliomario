@@ -79,6 +79,13 @@ export const ContainerInfoProject = styled.div`
     max-width: 1244px;
   }
 `
+export const ItemProject = styled.li`
+  ${props =>
+    props.alignEnd &&
+    css`
+      align-self: flex-end;
+    `}
+`
 
 export const InfoProject = styled.ul`
   display: flex;
@@ -90,6 +97,7 @@ export const InfoProject = styled.ul`
   /* padding: 0 5rem; */
   list-style: none;
   background-color: blue;
+
   li:first-child {
     color: red;
     margin-bottom: 2rem;
@@ -120,7 +128,7 @@ export const IntroProject = styled.p`
   font-family: "Roboto", sans-serif;
 `
 
-export const ContainerImage = styled.div`
+export const ContainerImage = styled(motion.div)`
   margin: 0 auto;
   margin-top: 4rem;
 
@@ -149,5 +157,4 @@ export const RightPanelBackground = styled(motion.div)`
   right: 0;
   /* background: ${props => props.theme.second_panel_color}; */
   background: pink;
-
 `

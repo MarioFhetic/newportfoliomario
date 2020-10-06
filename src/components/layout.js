@@ -36,7 +36,7 @@ ${normalize}
 
 .no-scroll
 {
-  overflow-y: hidden;
+  overflow-y: hidden; 
 }
 
 a
@@ -81,7 +81,7 @@ const Layout = ({ children }) => {
 
   // THEMES
 
-  // Color : #F5EFE1
+  // Color : #f2efe8
 
   const darkTheme = {
     background: "#121212",
@@ -95,7 +95,7 @@ const Layout = ({ children }) => {
     first_panel_color: "#121212",
   }
   const lightTheme = {
-    background: "#F5EFE1",
+    background: "#f2efe8",
     primary_text_color: "#121212",
     opposite_primary_text_color: "#F9F9F9",
 
@@ -104,7 +104,7 @@ const Layout = ({ children }) => {
     linear_gradient_title:
       "linear-gradient(90deg, #121212 23.96%, #545454 100%);",
     color_svg: "#121212",
-    first_panel_color: "#F5EFE1",
+    first_panel_color: "#f2efe8",
   }
 
   const { currentTheme, cursorStyles } = useGlobalStateContext()
