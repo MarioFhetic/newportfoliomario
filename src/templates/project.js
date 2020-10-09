@@ -76,13 +76,15 @@ const Project = props => {
   const app = useRef()
   const scrollContainer = useRef()
 
-  // Configs
+  // Configs skew scroll
   const data = {
     ease: 0.1,
     current: 0,
     previous: 0,
     rounded: 0,
   }
+
+  const technoData = []
 
   // Run scrollrender once page is loaded.
   useEffect(() => {
@@ -135,147 +137,136 @@ const Project = props => {
 
   return (
     <Layout>
-      {console.log("inView", inView)}
-      {console.log("secondView", secondView)}
-      {/* Add this to AppContainer */}
-      {/* initial={{ visibility: "hidden" }}
-        animate={{ visibility: "visible", transition: { delay: 1 } }}
-        exit={{ visibility: "hidden", transition: { delay: 1 } }} */}
-
-      {/* transition={{ ...transition }}
+      <AnimatePresence>
+        <AppContainer
+          ref={app}
+          transition={{ ...transition }}
           initial={{ opacity: 0, skewY: 3, y: 100 }}
           animate={{ opacity: 1, skewY: 0, y: 0 }}
           exit={{ opacity: 0, skewY: 0, y: 0 }}
-          key={projects[0].url} */}
-      <AppContainer
-        ref={app}
-        transition={{ ...transition }}
-        initial={{ opacity: 0, skewY: 3, y: 100 }}
-        animate={{ opacity: 1, skewY: 0, y: 0 }}
-        exit={{ opacity: 0, skewY: 0, y: 0 }}
-        key={projects[0].url}
-      >
-        <ScrollContainer ref={scrollContainer}>
-          <ReturnButton>
-            <Link to={`/`}>Retour home</Link>
-          </ReturnButton>
-          <ContainerProject>
-            <TitleProject>{projects[0].title}</TitleProject>
-          </ContainerProject>
-          <ContainerInfoProject>
-            <InfoProject>
-              <li>Year</li>
-              <li>{projects[0].year}</li>
-            </InfoProject>
-            <InfoProject>
-              <li>Rôle</li>
-              <li>{projects[0].role}</li>
-            </InfoProject>
-            <InfoProject>
-              <ItemProject>Techno</ItemProject>
-              <ItemProject>Angular</ItemProject>
-            </InfoProject>
-          </ContainerInfoProject>
-          <ContainerIntroProject>
-            <IntroProject>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat
-              impedit earum numquam laboriosam, nisi illo officia, nemo
-              voluptatem animi odio ex dolor eligendi nam. Voluptatibus soluta
-              neque debitis numquam blanditiis.
-              <br /> <br />
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit
-              aliquam unde voluptas, a neque eaque asperiores necessitatibus
-              voluptatibus fuga adipisci earum veritatis ipsum quisquam aperiam
-              similique explicabo, cumque soluta. Sint.
-            </IntroProject>
-          </ContainerIntroProject>
+          key={projects[0].url}
+        >
+          <ScrollContainer ref={scrollContainer}>
+            <ReturnButton>
+              <Link to={`/`}>Retour home</Link>
+            </ReturnButton>
+            <ContainerProject>
+              <TitleProject>{projects[0].title}</TitleProject>
+            </ContainerProject>
+            <ContainerInfoProject>
+              <InfoProject>
+                <li>Year</li>
+                <li>{projects[0].year}</li>
+              </InfoProject>
+              <InfoProject>
+                <li>Rôle</li>
+                <li>{projects[0].role}</li>
+              </InfoProject>
+              <InfoProject>
+                <ItemProject>Techno</ItemProject>
+                <ItemProject>
+                  {projects[0].stack.map((item, i) => {
+                    return item.title
+                  })}
+                </ItemProject>
+              </InfoProject>
+            </ContainerInfoProject>
+            <ContainerIntroProject>
+              <IntroProject>{projects[0].description_project}</IntroProject>
+            </ContainerIntroProject>
 
-          {projects[0].firstImage && (
-            <ContainerImage
-              ref={firstImage}
-              animate={animation}
-              initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
-              variants={{
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 1.3, ease: [0.6, -0.05, 0.01, 0.9] }, // cubic-bezier(1,0,0,1);
-                  skewY: 0,
-                },
-                hidden: {
-                  opacity: 0,
-                  y: 50,
-                  skewY: 5,
-                },
-              }}
-            >
-              <Image
-                fluid={projects[0].firstImage.childImageSharp.fluid}
-              ></Image>
-            </ContainerImage>
-          )}
+            {projects[0].firstImage && (
+              <ContainerImage
+                ref={firstImage}
+                animate={animation}
+                initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                variants={{
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 1.3,
+                      ease: [0.6, -0.05, 0.01, 0.9],
+                    }, // cubic-bezier(1,0,0,1);
+                    skewY: 0,
+                  },
+                  hidden: {
+                    opacity: 0,
+                    y: 50,
+                    skewY: 5,
+                  },
+                }}
+              >
+                <Image
+                  fluid={projects[0].firstImage.childImageSharp.fluid}
+                ></Image>
+              </ContainerImage>
+            )}
 
-          {projects[0].secondImage && (
-            <ContainerImage
-              ref={secondImage}
-              animate={animationother}
-              initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
-              variants={{
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 1.3,
-                    ease: [0.6, -0.05, 0.01, 0.9],
-                  }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
-                  skewY: 0,
-                },
-                hidden: {
-                  opacity: 0,
-                  y: 50,
-                  skewY: 5,
-                },
-              }}
-            >
-              <Image
-                fluid={projects[0].secondImage.childImageSharp.fluid}
-              ></Image>
-            </ContainerImage>
-          )}
+            {projects[0].secondImage && (
+              <ContainerImage
+                ref={secondImage}
+                animate={animationother}
+                initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                variants={{
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 1.3,
+                      ease: [0.6, -0.05, 0.01, 0.9],
+                    }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+                    skewY: 0,
+                  },
+                  hidden: {
+                    opacity: 0,
+                    y: 50,
+                    skewY: 5,
+                  },
+                }}
+              >
+                <Image
+                  fluid={projects[0].secondImage.childImageSharp.fluid}
+                ></Image>
+              </ContainerImage>
+            )}
 
-          {projects[0].thirdImage && (
-            <ContainerImage
-              ref={thirdImage}
-              animate={animationthird}
-              initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
-              variants={{
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 1.3, ease: [0.6, -0.05, 0.01, 0.9] }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
-                  skewY: 0,
-                },
-                hidden: {
-                  opacity: 0,
-                  y: 50,
-                  skewY: 5,
-                },
-              }}
-            >
-              <Image
-                fluid={projects[0].thirdImage.childImageSharp.fluid}
-              ></Image>
-            </ContainerImage>
-          )}
+            {projects[0].thirdImage && (
+              <ContainerImage
+                ref={thirdImage}
+                animate={animationthird}
+                initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                variants={{
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 1.3,
+                      ease: [0.6, -0.05, 0.01, 0.9],
+                    }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+                    skewY: 0,
+                  },
+                  hidden: {
+                    opacity: 0,
+                    y: 50,
+                    skewY: 5,
+                  },
+                }}
+              >
+                <Image
+                  fluid={projects[0].thirdImage.childImageSharp.fluid}
+                ></Image>
+              </ContainerImage>
+            )}
 
-          <ContainerNextPrevProject>
-            {next && <Link to={`/${next.url}`}>Go to next project</Link>}
-            {prev && <Link to={`/${prev.url}`}>Go to previous Project</Link>}
-            {/* <Link to={`${prev.url}`}>Previous Project</Link> */}
-          </ContainerNextPrevProject>
-        </ScrollContainer>
-      </AppContainer>
-
+            <ContainerNextPrevProject>
+              {next && <Link to={`/${next.url}`}>Go to next project</Link>}
+              {prev && <Link to={`/${prev.url}`}>Go to previous Project</Link>}
+              {/* <Link to={`${prev.url}`}>Previous Project</Link> */}
+            </ContainerNextPrevProject>
+          </ScrollContainer>
+        </AppContainer>
+      </AnimatePresence>
       {/* <Panels /> */}
     </Layout>
   )
@@ -346,6 +337,11 @@ export const query = graphql`
             }
           }
         }
+        stack {
+          id
+          title
+        }
+        description_project
       }
     }
   }

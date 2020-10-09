@@ -15,16 +15,6 @@ import {
   useGlobalDispatchContext,
 } from "../context/globalContext"
 
-const Switch = ({ isOn, ...props }) => {
-  const className = `switch ${isOn ? "on" : "off"}`
-
-  return (
-    <motion.div animate className={className} {...props}>
-      <motion.div animate />
-    </motion.div>
-  )
-}
-
 const Header = ({ onCursor }) => {
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()

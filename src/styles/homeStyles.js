@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { motion } from "framer-motion"
 
 export const Header = styled.div`
@@ -83,12 +83,18 @@ export const TextContent = styled.div`
 
 // WORK SECTION
 
-export const HeaderWorks = styled.h1`
+export const ContainerHeaderWorks = styled(motion.div)`
+  width: 100%;
+  /* background: ${props => props.theme.background}; */
+`
+
+export const HeaderWorks = styled(motion.h1)`
   font-size: 4.5rem;
   font-weight: 700;
   background: ${props => props.theme.linear_gradient_title};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  overflow: hidden;
 `
 
 export const ProjectsList = styled.div`

@@ -16,7 +16,7 @@ const HomeAbout = ({ onCursor }) => {
           <br /> and I come from Paris
         </TitleAbout>
       </Container>
-      <Container>
+      {/* <Container>
         <Flex>
           <SvgContent>
             <GraduationSvg></GraduationSvg>
@@ -51,7 +51,8 @@ const HomeAbout = ({ onCursor }) => {
             <SoccerSvg></SoccerSvg>
           </SvgContent>
         </Flex>
-      </Container>
+              </Container>
+ */}
     </>
   )
 }

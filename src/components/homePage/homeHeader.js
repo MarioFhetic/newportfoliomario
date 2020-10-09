@@ -9,13 +9,7 @@ import useWindowSize from "../../hooks/useWindowSize"
 // context
 import { useGlobalStateContext } from "../../context/globalContext"
 
-import {
-  Header,
-  WebglContainer,
-  Canvas,
-  HeaderTitle,
-  HeaderLine,
-} from "../../styles/homeStyles"
+import { Header, WebglContainer, Canvas } from "../../styles/homeStyles"
 
 const HomeHeader = ({ onCursor }) => {
   let canvas = useRef(null)

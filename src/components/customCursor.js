@@ -33,7 +33,7 @@
 
 // export default CustomCursor
 
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 //Context
 import { useGlobalStateContext } from "../context/globalContext"
 // Styled Components

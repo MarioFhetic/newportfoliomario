@@ -1,11 +1,19 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link } from "gatsby"
 
-import { motion } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
+
+//view
+import { useInView } from "react-intersection-observer"
 
 // styled-component
 import { Container } from "../../styles/globalStyles"
-import { HeaderWorks, ProjectsList, NavVideos } from "../../styles/homeStyles"
+import {
+  HeaderWorks,
+  ContainerHeaderWorks,
+  ProjectsList,
+  NavVideos,
+} from "../../styles/homeStyles"
 
 const HomeWorks = ({ onCursor, projects }) => {
   const [revealVideo, setRevealVideo] = useState({
@@ -15,16 +23,95 @@ const HomeWorks = ({ onCursor, projects }) => {
     caption: "",
   })
 
+  // First view
+
+  const animation = useAnimation()
+
+  const [listOfProject, inView] = useInView({
+    triggerOnce: true, // renvoi que une seule fois false puis que des true
+    rootMargin: "-200px",
+  })
+
+  useEffect(() => {
+    // si inView est set to true on run la variant "visible"
+    if (inView) animation.start("visible")
+  }, [animation, inView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
+
+  // End First view
+
+  // Second View
+
+  const titleAppear = useAnimation()
+
+  const [titleWork, secondView] = useInView({
+    triggerOnce: true, // renvoi que une seule fois false puis que des true
+    rootMargin: "-200px",
+  })
+
+  useEffect(() => {
+    // si inView est set to true on run la variant "visible"
+    if (secondView) titleAppear.start("visible")
+  }, [titleAppear, secondView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
+
+  // End Second View
+
   return (
     <Container>
-      <HeaderWorks>
-        Here's small overview of <br />
-        my projects
-      </HeaderWorks>
+      <ContainerHeaderWorks>
+        <HeaderWorks
+          ref={titleWork}
+          animate={titleAppear}
+          initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+          variants={{
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 1,
+                ease: [0.6, -0.05, 0.01, 0.9],
+              },
+            },
+            hidden: {
+              opacity: 0,
+              y: 50,
+            },
+          }}
+        >
+          Here's small overview of <br />
+          my projects
+        </HeaderWorks>
+      </ContainerHeaderWorks>
       <ProjectsList>
-        <ul>
+        <motion.ul
+          ref={listOfProject}
+          animate={animation}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.6,
+                duration: 1,
+                ease: [0.6, -0.05, 0.01, 0.9],
+              }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+            },
+          }}
+          initial="hidden"
+        >
           {projects.map(project => (
             <motion.li
+              initial="hidden"
+              variants={{
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  skewX: 0,
+                },
+                hidden: {
+                  opacity: 0,
+                  y: -10,
+                  skewX: -15,
+                },
+              }}
               key={project.id}
               onMouseEnter={() => onCursor("workHovered")}
               onMouseLeave={() => onCursor(onCursor)}
@@ -69,7 +156,7 @@ const HomeWorks = ({ onCursor, projects }) => {
               </motion.span> */}
             </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </ProjectsList>
       <NavVideos>
         <motion.div
