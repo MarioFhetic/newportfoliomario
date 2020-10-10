@@ -47,6 +47,14 @@ ul
 {
 }
 
+p
+{
+  margin-block-start: 0em !important;
+  margin-block-end: 0em !important;
+
+
+}
+
 div :focus
 {
   outline: none;

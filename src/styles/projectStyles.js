@@ -85,6 +85,11 @@ export const ItemProject = styled.li`
     css`
       align-self: flex-end;
     `}
+
+  img {
+    width: 20px;
+    margin-right: 0.5rem;
+  }
 `
 
 export const InfoProject = styled.ul`
@@ -99,8 +104,12 @@ export const InfoProject = styled.ul`
   background-color: blue;
 
   li:first-child {
-    color: red;
     margin-bottom: 2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  li:last-child {
+    font-weight: 300;
   }
 `
 
@@ -124,6 +133,7 @@ export const ContainerIntroProject = styled.div`
 
 export const IntroProject = styled.p`
   font-size: 1rem;
+  line-height: 180%;
   width: 50%;
   font-family: "Roboto", sans-serif;
 `

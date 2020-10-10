@@ -81,6 +81,38 @@ export const TextContent = styled.div`
   }
 `
 
+export const ContainerTextAbout = styled.div`
+  display: flex;
+  justify-content: center;
+`
+export const TextAbout = styled.p`
+  font-size: 2.5rem;
+  line-height: 200%;
+  font-weight: 300;
+  span {
+    position: relative;
+    cursor: pointer;
+    ::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      display: block;
+      right: 0;
+      background: ${props => props.theme.primary_text_color};
+
+      transition: 0.4s;
+    }
+    &:hover {
+      &:after {
+        width: 0%;
+        left: 0;
+        background: ${props => props.theme.primary_text_color};
+      }
+    }
+  }
+`
+
 // WORK SECTION
 
 export const ContainerHeaderWorks = styled(motion.div)`

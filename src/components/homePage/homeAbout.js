@@ -1,11 +1,11 @@
 import React from "react"
 
-import { Container, Flex } from "../../styles/globalStyles"
-import { TitleAbout, SvgContent, TextContent } from "../../styles/homeStyles"
-
-// SVGs
-import { GraduationSvg } from "../../assets/svg/graduationSvg"
-import { SoccerSvg } from "../../assets/svg/soccerSvg"
+import { Container } from "../../styles/globalStyles"
+import {
+  TitleAbout,
+  ContainerTextAbout,
+  TextAbout,
+} from "../../styles/homeStyles"
 
 const HomeAbout = ({ onCursor }) => {
   return (
@@ -15,6 +15,16 @@ const HomeAbout = ({ onCursor }) => {
           My name is Mario, I'm 21
           <br /> and I come from Paris
         </TitleAbout>
+        <ContainerTextAbout>
+          <TextAbout>
+            As a student at the end of the 3th year of the <span>HETIC</span>{" "}
+            Grand School program, I am looking for a 3-month internship from
+            July 1st to October 4th. This training is <span>versatile</span> and
+            has focused, during these first three years, on{" "}
+            <span>technology</span> and code, web design, digital marketing and
+            project management.
+          </TextAbout>
+        </ContainerTextAbout>
       </Container>
       {/* <Container>
         <Flex>
@@ -25,10 +35,10 @@ const HomeAbout = ({ onCursor }) => {
             <h3>Who am I ?</h3>
 
             <p>
-              As a student at the end of the 2nd year of the HETIC Grand School
+              As a student at the end of the 4th year of the HETIC Grand School
               program, I am looking for a 3-month internship from July 1st to
               October 4th. This training is versatile and has focused, during
-              these first two years, on technology and code, web design, digital
+              these first three years, on technology and code, web design, digital
               marketing and project management.
             </p>
           </TextContent>

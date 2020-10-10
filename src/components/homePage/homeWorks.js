@@ -160,7 +160,7 @@ const HomeWorks = ({ onCursor, projects }) => {
       </ProjectsList>
       <NavVideos>
         <motion.div
-          animate={{ width: revealVideo.show ? 0 : "100%" }}
+          animate={{ height: revealVideo.show ? 0 : "100%" }}
           className="reveal"
         ></motion.div>
         <div className="video">

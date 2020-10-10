@@ -166,7 +166,13 @@ const Project = props => {
                 <ItemProject>Techno</ItemProject>
                 <ItemProject>
                   {projects[0].stack.map((item, i) => {
-                    return item.title
+                    return (
+                      <img
+                        key={i}
+                        src={require(`../assets/technoIcon/${item.title}`)}
+                        alt={item.title}
+                      />
+                    )
                   })}
                 </ItemProject>
               </InfoProject>
