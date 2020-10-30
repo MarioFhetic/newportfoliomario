@@ -1,7 +1,6 @@
 import React, { useRef, useState, Suspense } from "react"
 
 import { Canvas, useFrame } from "react-three-fiber"
-// useFrame => Loop pour l'animation
 
 // import { MeshWobbleMaterial, OrbitControls, Html } from "drei"
 import { HTML, useGLTFLoader } from "@react-three/drei"
