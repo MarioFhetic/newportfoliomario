@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 
 export const HeaderNav = styled.div`
   height: 0;
@@ -16,6 +16,7 @@ export const HeaderNav = styled.div`
 export const Menu = styled.div`
   background-color: red;
   width: 25px;
+  cursor: pointer;
 `
 
 export const Logo = styled.div`

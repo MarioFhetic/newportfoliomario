@@ -19,7 +19,6 @@ const Header = ({ onCursor }) => {
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()
 
-  const [isOn, setIsOn] = useState(false)
 
   // custom function toggle Theme
   const toggleTheme = () => {

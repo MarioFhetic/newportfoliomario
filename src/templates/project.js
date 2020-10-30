@@ -1,15 +1,25 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import { graphql, Link } from "gatsby"
 import Image from "gatsby-image"
 import Layout from "../components/layout"
-import { AnimatePresence, useAnimation } from "framer-motion"
+import {
+  AnimatePresence,
+  useAnimation,
+  useViewportScroll,
+  useTransform,
+  motion,
+} from "framer-motion"
 
 import { useInView } from "react-intersection-observer"
-
+// MOON/SUN ICONS
+import { CloseSvg } from "../assets/svg/close"
 // images animation
 
 // hook
 import useWindowSize from "../hooks/useWindowSize"
+
+// import WebGL from "../webGL/webGL"
+// import { WebglContainer } from "../styles/homeStyles"
 
 // styled-component
 import {
@@ -26,48 +36,56 @@ import {
   ReturnButton,
   RightPanelBackground,
   ItemProject,
+  SeparatorLine,
+  BigContainerWrapperScrollProgress,
+  WrapperScrollProgress,
+  ContainerScrollProgress,
+  ItemScrollProgress,
+  ContainerRightSide,
+  ContainerItemRightSide,
+  TitleRightSide,
+  ContainerLeftSideAccordion,
+  AccordionContent,
+  AccordionIcon,
 } from "../styles/projectStyles"
 
 const Project = props => {
   const animation = useAnimation()
 
   const [firstImage, inView] = useInView({
-    triggerOnce: true, // renvoi que une seule fois false puis que des true
+    triggerOnce: true,
     rootMargin: "-200px",
   })
 
   useEffect(() => {
-    // si inView est set to true on run la variant "visible"
     if (inView) animation.start("visible")
-  }, [animation, inView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
+  }, [animation, inView])
 
   //////
 
   const animationother = useAnimation()
 
   const [secondImage, secondView] = useInView({
-    triggerOnce: true, // renvoi que une seule fois false puis que des true
+    triggerOnce: true,
     rootMargin: "-200px",
   })
 
   useEffect(() => {
-    // si inView est set to true on run la variant "visible"
     if (secondView) animationother.start("visible")
-  }, [animationother, secondView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
+  }, [animationother, secondView])
 
   /////
 
   const animationthird = useAnimation()
 
   const [thirdImage, thirdView] = useInView({
-    triggerOnce: true, // renvoi que une seule fois false puis que des true
+    triggerOnce: true,
     rootMargin: "-200px",
   })
 
   useEffect(() => {
-    // si inView est set to true on run la variant "visible"
     if (thirdView) animationthird.start("visible")
-  }, [animationthird, thirdView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
+  }, [animationthird, thirdView])
 
   //Hook to grab window size
   const size = useWindowSize()
@@ -83,8 +101,6 @@ const Project = props => {
     previous: 0,
     rounded: 0,
   }
-
-  const technoData = []
 
   // Run scrollrender once page is loaded.
   useEffect(() => {
@@ -128,6 +144,11 @@ const Project = props => {
     requestAnimationFrame(() => skewScrolling())
   }
 
+  const { scrollYProgress } = useViewportScroll()
+  // const scale = useTransform(scrollYProgress);
+  const scale = useTransform(scrollYProgress, [0, 0], [0.1, 1])
+  // const scale = useTransform(scrollYProgress, [0, 1], [0.2, 2]);
+
   const {
     allStrapiProjects: { nodes: projects },
   } = props.data
@@ -135,8 +156,59 @@ const Project = props => {
   const { next, prev } = props.pageContext
   const transition = { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.9] }
 
+  // ACCORDION SECTION
+  const [expanded, setExpanded] = useState(false)
+  const Accordion = ({ expanded, setExpanded }) => {
+    const isOpen = expanded
+    return (
+      <>
+        <AccordionIcon onClick={() => setExpanded(isOpen ? false : true)}>
+          <motion.span
+            animate={{ rotate: isOpen ? 90 : 45, y: 0, x: -8 }}
+            transition={{ duration: 0.1, ease: [0.6, 0.05, -0.01, 0.9] }}
+          ></motion.span>
+          <motion.span
+            animate={{ rotate: isOpen ? 90 : -45, y: 5, x: -8 }}
+            transition={{ duration: 0.1, ease: [0.6, 0.05, -0.01, 0.9] }}
+          ></motion.span>
+        </AccordionIcon>
+        <AccordionContent
+          key="content"
+          animate={{ width: isOpen ? "100%" : "0%" }}
+          transition={{ duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }}
+        >
+          <motion.a
+            href="https://www.linkedin.com/in/mario-fayolle/"
+            transition={{ duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }}
+            whileHover={{ letterSpacing: "0.02rem" }}
+          >
+            Linkedin
+          </motion.a>
+          <motion.a
+            href="https://dribbble.com/mariofayolle/"
+            transition={{ duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }}
+            whileHover={{ letterSpacing: "0.02rem" }}
+          >
+            Dribbble
+          </motion.a>
+          <motion.a
+            href="https://www.instagram.com/mariofyl/"
+            transition={{ duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }}
+            whileHover={{ letterSpacing: "0.02rem" }}
+          >
+            Instagram
+          </motion.a>
+        </AccordionContent>
+      </>
+    )
+  }
+  // END ACCORDION SECTION
+
   return (
     <Layout>
+      {/* <WebglContainer>
+        <WebGL></WebGL>
+      </WebglContainer> */}
       <AnimatePresence>
         <AppContainer
           ref={app}
@@ -146,130 +218,292 @@ const Project = props => {
           exit={{ opacity: 0, skewY: 0, y: 0 }}
           key={projects[0].url}
         >
+          <BigContainerWrapperScrollProgress>
+            <WrapperScrollProgress>
+              <ContainerScrollProgress
+                style={{
+                  scale,
+                }}
+              >
+                <ItemScrollProgress
+                  style={{
+                    scaleY: scrollYProgress,
+                  }}
+                />
+              </ContainerScrollProgress>
+            </WrapperScrollProgress>
+          </BigContainerWrapperScrollProgress>
+
+          <ContainerRightSide>
+            <ContainerItemRightSide>
+              <TitleRightSide
+                transition={{ duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }}
+                whileHover={{ letterSpacing: "0rem" }}
+              >
+                Projects
+              </TitleRightSide>
+            </ContainerItemRightSide>
+          </ContainerRightSide>
+
+          <ContainerLeftSideAccordion>
+            <Accordion expanded={expanded} setExpanded={setExpanded} />
+          </ContainerLeftSideAccordion>
+
           <ScrollContainer ref={scrollContainer}>
-            <ReturnButton>
-              <Link to={`/`}>Retour home</Link>
-            </ReturnButton>
-            <ContainerProject>
-              <TitleProject>{projects[0].title}</TitleProject>
-            </ContainerProject>
-            <ContainerInfoProject>
-              <InfoProject>
-                <li>Year</li>
-                <li>{projects[0].year}</li>
-              </InfoProject>
-              <InfoProject>
-                <li>Rôle</li>
-                <li>{projects[0].role}</li>
-              </InfoProject>
-              <InfoProject>
-                <ItemProject>Techno</ItemProject>
-                <ItemProject>
-                  {projects[0].stack.map((item, i) => {
-                    return (
-                      <img
-                        key={i}
-                        src={require(`../assets/technoIcon/${item.title}`)}
-                        alt={item.title}
-                      />
-                    )
-                  })}
-                </ItemProject>
-              </InfoProject>
-            </ContainerInfoProject>
-            <ContainerIntroProject>
-              <IntroProject>{projects[0].description_project}</IntroProject>
-            </ContainerIntroProject>
+            <header>
+              <ContainerProject>
+                <Link to={`/`}>
+                  <ReturnButton>
+                    <CloseSvg />
+                  </ReturnButton>
+                </Link>
+                <TitleProject
+                  transition={{ duration: 1, ease: [0.6, 0.05, -0.01, 0.9] }}
+                  whileHover={{ letterSpacing: "0rem" }}
+                >
+                  {projects[0].title}
+                </TitleProject>
+              </ContainerProject>
+              <ContainerIntroProject>
+                <IntroProject>{projects[0].description_project}</IntroProject>
+              </ContainerIntroProject>
+              <ContainerInfoProject>
+                <InfoProject>
+                  <li>{projects[0].year}</li>
+                </InfoProject>
+                <InfoProject>
+                  <li>{projects[0].role}</li>
+                </InfoProject>
+                <InfoProject>
+                  <ItemProject>
+                    {projects[0].stack.map((item, i) => {
+                      return (
+                        <img
+                          key={i}
+                          src={require(`../assets/technoIcon/${item.title}`)}
+                          alt={item.title}
+                        />
+                      )
+                    })}
+                  </ItemProject>
+                </InfoProject>
+              </ContainerInfoProject>
+            </header>
 
-            {projects[0].firstImage && (
-              <ContainerImage
-                ref={firstImage}
-                animate={animation}
-                initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
-                variants={{
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 1.3,
-                      ease: [0.6, -0.05, 0.01, 0.9],
-                    }, // cubic-bezier(1,0,0,1);
-                    skewY: 0,
-                  },
-                  hidden: {
-                    opacity: 0,
-                    y: 50,
-                    skewY: 5,
-                  },
-                }}
-              >
-                <Image
-                  fluid={projects[0].firstImage.childImageSharp.fluid}
-                ></Image>
-              </ContainerImage>
-            )}
+            <main>
+              {/* {projects[0].images.map((item, i) => {
+                return (
+                  <>
+                    <ContainerImage>
+                      <Image
+                        initial="hidden"
+                        key={item.id}
+                        fluid={item.image.childImageSharp.fluid}
+                      ></Image>
+                    </ContainerImage>
+                  </>
+                )
+              })} */}
+              {projects[0].firstImage && (
+                <ContainerImage
+                  ref={firstImage}
+                  animate={animation}
+                  initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                  variants={{
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 1.3,
+                        ease: [0.6, -0.05, 0.01, 0.9],
+                      }, // cubic-bezier(1,0,0,1);
+                      skewY: 0,
+                    },
+                    hidden: {
+                      opacity: 0,
+                      y: 50,
+                      skewY: 5,
+                    },
+                  }}
+                >
+                  <Image
+                    fluid={projects[0].firstImage.childImageSharp.fluid}
+                  ></Image>
+                </ContainerImage>
+              )}
 
-            {projects[0].secondImage && (
-              <ContainerImage
-                ref={secondImage}
-                animate={animationother}
-                initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
-                variants={{
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 1.3,
-                      ease: [0.6, -0.05, 0.01, 0.9],
-                    }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
-                    skewY: 0,
-                  },
-                  hidden: {
-                    opacity: 0,
-                    y: 50,
-                    skewY: 5,
-                  },
-                }}
-              >
-                <Image
-                  fluid={projects[0].secondImage.childImageSharp.fluid}
-                ></Image>
-              </ContainerImage>
-            )}
+              {projects[0].secondImage && (
+                <ContainerImage
+                  ref={secondImage}
+                  animate={animationother}
+                  initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                  variants={{
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 1.3,
+                        ease: [0.6, -0.05, 0.01, 0.9],
+                      }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+                      skewY: 0,
+                    },
+                    hidden: {
+                      opacity: 0,
+                      y: 50,
+                      skewY: 5,
+                    },
+                  }}
+                >
+                  <Image
+                    fluid={projects[0].secondImage.childImageSharp.fluid}
+                  ></Image>
+                </ContainerImage>
+              )}
 
-            {projects[0].thirdImage && (
-              <ContainerImage
-                ref={thirdImage}
-                animate={animationthird}
-                initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
-                variants={{
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      duration: 1.3,
-                      ease: [0.6, -0.05, 0.01, 0.9],
-                    }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
-                    skewY: 0,
-                  },
-                  hidden: {
-                    opacity: 0,
-                    y: 50,
-                    skewY: 5,
-                  },
-                }}
-              >
-                <Image
-                  fluid={projects[0].thirdImage.childImageSharp.fluid}
-                ></Image>
-              </ContainerImage>
-            )}
-
-            <ContainerNextPrevProject>
-              {next && <Link to={`/${next.url}`}>Go to next project</Link>}
-              {prev && <Link to={`/${prev.url}`}>Go to previous Project</Link>}
-              {/* <Link to={`${prev.url}`}>Previous Project</Link> */}
-            </ContainerNextPrevProject>
+              {projects[0].thirdImage && (
+                <ContainerImage
+                  ref={thirdImage}
+                  animate={animationthird}
+                  initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                  variants={{
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 1.3,
+                        ease: [0.6, -0.05, 0.01, 0.9],
+                      }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+                      skewY: 0,
+                    },
+                    hidden: {
+                      opacity: 0,
+                      y: 50,
+                      skewY: 5,
+                    },
+                  }}
+                >
+                  <Image
+                    fluid={projects[0].thirdImage.childImageSharp.fluid}
+                  ></Image>
+                </ContainerImage>
+              )}
+              {projects[0].fourthImage && (
+                <ContainerImage
+                  ref={thirdImage}
+                  animate={animationthird}
+                  initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                  variants={{
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 1.3,
+                        ease: [0.6, -0.05, 0.01, 0.9],
+                      }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+                      skewY: 0,
+                    },
+                    hidden: {
+                      opacity: 0,
+                      y: 50,
+                      skewY: 5,
+                    },
+                  }}
+                >
+                  <Image
+                    fluid={projects[0].fourthImage.childImageSharp.fluid}
+                  ></Image>
+                </ContainerImage>
+              )}
+              {projects[0].fifthImage && (
+                <ContainerImage
+                  ref={thirdImage}
+                  animate={animationthird}
+                  initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                  variants={{
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 1.3,
+                        ease: [0.6, -0.05, 0.01, 0.9],
+                      }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+                      skewY: 0,
+                    },
+                    hidden: {
+                      opacity: 0,
+                      y: 50,
+                      skewY: 5,
+                    },
+                  }}
+                >
+                  <Image
+                    fluid={projects[0].fifthImage.childImageSharp.fluid}
+                  ></Image>
+                </ContainerImage>
+              )}
+              {projects[0].sixImage && (
+                <ContainerImage
+                  ref={thirdImage}
+                  animate={animationthird}
+                  initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                  variants={{
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 1.3,
+                        ease: [0.6, -0.05, 0.01, 0.9],
+                      }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+                      skewY: 0,
+                    },
+                    hidden: {
+                      opacity: 0,
+                      y: 50,
+                      skewY: 5,
+                    },
+                  }}
+                >
+                  <Image
+                    fluid={projects[0].sixImage.childImageSharp.fluid}
+                  ></Image>
+                </ContainerImage>
+              )}
+              {projects[0].sevenImage && (
+                <ContainerImage
+                  ref={thirdImage}
+                  animate={animationthird}
+                  initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+                  variants={{
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 1.3,
+                        ease: [0.6, -0.05, 0.01, 0.9],
+                      }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+                      skewY: 0,
+                    },
+                    hidden: {
+                      opacity: 0,
+                      y: 50,
+                      skewY: 5,
+                    },
+                  }}
+                >
+                  <Image
+                    fluid={projects[0].sevenImage.childImageSharp.fluid}
+                  ></Image>
+                </ContainerImage>
+              )}
+            </main>
+            <footer>
+              <SeparatorLine />
+              <ContainerNextPrevProject>
+                {prev && <Link to={`/${prev.url}`}>Previous Project</Link>}
+                {next && <Link to={`/${next.url}`}>Next project</Link>}
+                {/* <Link to={`${prev.url}`}>Previous Project</Link>  */}
+              </ContainerNextPrevProject>
+            </footer>
           </ScrollContainer>
         </AppContainer>
       </AnimatePresence>
@@ -324,21 +558,49 @@ export const query = graphql`
         role
         firstImage {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 4000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
         }
         secondImage {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 4000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
         }
         thirdImage {
           childImageSharp {
-            fluid {
+            fluid(maxWidth: 4000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        fourthImage {
+          childImageSharp {
+            fluid(maxWidth: 4000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        fifthImage {
+          childImageSharp {
+            fluid(maxWidth: 4000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        sixImage {
+          childImageSharp {
+            fluid(maxWidth: 4000, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        sevenImage {
+          childImageSharp {
+            fluid(maxWidth: 4000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
@@ -352,3 +614,15 @@ export const query = graphql`
     }
   }
 `
+// DYNAMICLY IMAGE
+
+// images {
+//   id
+//   image {
+//     childImageSharp {
+//       fluid(maxWidth: 2000, quality: 100) {
+//         ...GatsbyImageSharpFluid
+//       }
+//     }
+//   }
+// }

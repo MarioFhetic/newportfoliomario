@@ -101,6 +101,10 @@ const Layout = ({ children }) => {
       "linear-gradient(90deg, #F9F9F9 26.78%, #D5D5D5 100%);",
     color_svg: "#F9F9F9",
     first_panel_color: "#121212",
+    background_svg: "#fff",
+    color_svg: "black",
+    stateless_border_svg: "white",
+    stateless_color_svg: "white",
   }
   const lightTheme = {
     background: "#f2efe8",
@@ -113,6 +117,11 @@ const Layout = ({ children }) => {
       "linear-gradient(90deg, #121212 23.96%, #545454 100%);",
     color_svg: "#121212",
     first_panel_color: "#f2efe8",
+    background_svg: "black",
+    color_svg: "#fff",
+    stateless_border_svg: "#30302f",
+    stateless_color_svg:
+      "#linear-gradient(90deg, #121212 23.96%, #545454 100%)",
   }
 
   const { currentTheme, cursorStyles } = useGlobalStateContext()
@@ -130,7 +139,6 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
-      {/* <Cursor /> */}
       <Header onCursor={onCursor} />
       <main>{children}</main>
     </ThemeProvider>

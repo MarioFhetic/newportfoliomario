@@ -1,28 +1,102 @@
-import React from "react"
+import React, {useEffect} from "react"
+import { useInView } from "react-intersection-observer"
+import { useAnimation } from "framer-motion"
+
 
 import { Container } from "../../styles/globalStyles"
 import {
   TitleAbout,
   ContainerTextAbout,
   TextAbout,
+  UnderlineWord,
 } from "../../styles/homeStyles"
 
+
+
 const HomeAbout = ({ onCursor }) => {
+
+   // First view
+
+   const aboutAnimation = useAnimation()
+
+   const [titleAbout, inView] = useInView({
+     triggerOnce: true, // renvoi que une seule fois false puis que des true
+     rootMargin: "-200px",
+   })
+ 
+   useEffect(() => {
+     // si inView est set to true on run la variant "visible"
+     if (inView) aboutAnimation.start("visible")
+   }, [aboutAnimation, inView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
+ 
+   // End First view
+
+   // Second view
+
+   const contentAboutAnimation = useAnimation()
+
+   const [contentAbout, secondView] = useInView({
+     triggerOnce: true, // renvoi que une seule fois false puis que des true
+     rootMargin: "-200px",
+   })
+ 
+   useEffect(() => {
+     // si inView est set to true on run la variant "visible"
+     if (secondView) contentAboutAnimation.start("visible")
+   }, [contentAboutAnimation, secondView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
+ 
+   // End Second view
+
+
   return (
     <>
       <Container>
-        <TitleAbout>
+        <TitleAbout
+          ref={titleAbout}
+          animate={aboutAnimation}
+          initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+          variants={{
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 1,
+                ease: [0.6, -0.05, 0.01, 0.9],
+              },
+            },
+            hidden: {
+              opacity: 0,
+              y: 50,
+            },
+          }}
+        >
           My name is Mario, I'm 21
           <br /> and I come from Paris
         </TitleAbout>
-        <ContainerTextAbout>
+        <ContainerTextAbout
+          ref={contentAbout}
+          animate={contentAboutAnimation}
+          initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+          variants={{
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 1,
+                ease: [0.6, -0.05, 0.01, 0.9],
+              },
+            },
+            hidden: {
+              opacity: 0,
+              y: 50,
+            },
+          }}
+        >
           <TextAbout>
-            As a student at the end of the 3th year of the <span>HETIC</span>{" "}
-            Grand School program, I am looking for a 3-month internship from
-            July 1st to October 4th. This training is <span>versatile</span> and
-            has focused, during these first three years, on{" "}
-            <span>technology</span> and code, web design, digital marketing and
-            project management.
+            As a student at the end of the 3th year of the{" "}
+            <UnderlineWord>HETIC</UnderlineWord> Grand School program, I am
+            looking for a 4 to 6-month internship from July 1st to October 4th.
+            I'm available for{" "}<UnderlineWord>freelance project</UnderlineWord>Feel free to{" "}<UnderlineWord>contact</UnderlineWord> me{" "}
           </TextAbout>
         </ContainerTextAbout>
       </Container>

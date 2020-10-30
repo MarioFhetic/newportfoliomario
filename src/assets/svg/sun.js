@@ -1,8 +1,10 @@
 import React from "react"
+import {motion} from 'framer-motion'
 
 export const SunSvg = () => {
   return (
-    <svg
+    <motion.svg
+      whileHover={{rotate: 40 }}
       width="32px"
       height="32px"
       viewBox="0 0 32 32"
@@ -27,7 +29,7 @@ export const SunSvg = () => {
           ></path>
         </g>
       </g>
-    </svg>
+    </motion.svg>
   )
 }
 export default SunSvg

@@ -11,7 +11,7 @@ import { State } from "./state"
 // import { useSpring, a } from "react-spring/three"
 
 const Model = () => {
-  const gltf = useGLTFLoader("/space.gltf", true)
+  const gltf = useGLTFLoader("/scene.gltf", true)
   return <primitive object={gltf.scene} dispose={null} />
 }
 
