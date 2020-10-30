@@ -206,9 +206,6 @@ const Project = props => {
 
   return (
     <Layout>
-      {/* <WebglContainer>
-        <WebGL></WebGL>
-      </WebglContainer> */}
       <AnimatePresence>
         <AppContainer
           ref={app}

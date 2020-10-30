@@ -18,7 +18,7 @@ const Model = () => {
 const Lights = () => {
   return (
     <>
-      <ambientLight intensity={0.3} />
+      <ambientLight intensity={0.1} />
       <directionalLight position={[10, 10, 5]} intensity={1}></directionalLight>
       <directionalLight
         position={[0, 10, 0]}
@@ -32,12 +32,14 @@ const Lights = () => {
 const HTMLContent = () => {
   const ref = useRef()
   // useFrame est différent useEffect..ça vient de react-three-fiber
-  useFrame(() => (ref.current.rotation.y += 0.001))
+  // useFrame(() => (ref.current.rotation.y += 0.001))
+
+  useFrame(() => (ref.current.position.z += 0.1))
 
   return (
     <Section factor={1.5} offset={1}>
-      <group position={[-100, 150, 0]}>
-        <mesh ref={ref} position={[15, -35, 100]}>
+      <group position={[0, 250, -50]}>
+        <mesh ref={ref} position={[0, 0, 0]}>
           <Model />
         </mesh>
         {/* <HTML>
