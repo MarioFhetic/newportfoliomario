@@ -108,11 +108,18 @@ const Project = props => {
   }, [])
 
   //set the height of the body.
+
+  // this useEffect works with the build but not whit development mode
   if (typeof window !== `undefined`) {
     useEffect(() => {
       setBodyHeight()
     }, [size.height])
   }
+
+  // // this useEffect is for development mode
+  // useEffect(() => {
+  //   setBodyHeight()
+  // }, [size.height])
 
   //Set the height of the body to the height of the scrolling div
   const setBodyHeight = () => {
