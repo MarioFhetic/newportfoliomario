@@ -35,9 +35,11 @@ export const GlobalProvider = (
 ) => {
   const [state, dispatch] = useReducer(globalReducer, {
     currentTheme:
-      window.localStorage.getItem("theme") == null
-        ? "light"
-        : window.localStorage.getItem("theme"),
+      typeof window !== "undefined"
+        ? window.localStorage.getItem("theme") === null
+          ? "dark"
+          : window.localStorage.getItem("theme")
+        : "dark",
     // On créer un initial state (ou type) pour la sourie
     // Puis on va créer un tableau rempli de classe css que l'on choisira en fonction du cursorType
     cursorType: false,
