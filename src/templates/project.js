@@ -107,6 +107,13 @@ const Project = props => {
     requestAnimationFrame(() => skewScrolling())
   }, [])
 
+  // this useEffect works with the build but not whit development mode
+  // if (typeof window !== `undefined`) {
+  //   useEffect(() => {
+  //     setBodyHeight()
+  //   }, [size.height])
+  // }
+
   //set the height of the body.
   useEffect(() => {
     setBodyHeight()
