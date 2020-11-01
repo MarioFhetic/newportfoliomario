@@ -36,6 +36,19 @@ export const HeaderLine = styled.span`
   line-height: 0.76;
 `
 
+export const ContainerTitleWebGL = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 10%;
+  top: 40%;
+`
+
+export const TitleWebGL = styled.h1`
+  color: red;
+  /* transform: translateY(-10%); */
+`
+
 // ABOUT SECTION
 
 export const TitleAbout = styled(motion.h1)`

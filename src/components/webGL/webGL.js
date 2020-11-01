@@ -1,4 +1,4 @@
-import React, { useRef, useState, Suspense } from "react"
+import React, { useRef, useState, Suspense, useEffect } from "react"
 
 import { Canvas, useFrame } from "react-three-fiber"
 // useFrame => Loop pour l'animation
@@ -8,7 +8,8 @@ import { HTML, useGLTFLoader } from "@react-three/drei"
 import { Section } from "./section"
 import { State } from "./state"
 
-// import { useSpring, a } from "react-spring/three"
+//
+import { ContainerTitleWebGL, TitleWebGL } from "../../styles/homeStyles"
 
 const Model = () => {
   const gltf = useGLTFLoader("/scene.gltf", true)
@@ -34,7 +35,8 @@ const HTMLContent = () => {
   // useFrame est différent useEffect..ça vient de react-three-fiber
   // useFrame(() => (ref.current.rotation.y += 0.001))
 
-  useFrame(() => (ref.current.position.z += 0.1))
+  // useFrame(() => (ref.current.rotation.x += 0.001))
+  // useFrame(() => (ref.current.position.z += 0.01) && (ref.current.rotation.x += 0.001))
 
   return (
     <Section factor={1.5} offset={1}>
@@ -42,11 +44,11 @@ const HTMLContent = () => {
         <mesh ref={ref} position={[0, 0, 0]}>
           <Model />
         </mesh>
-        {/* <HTML>
-          <div>
-            <div>hello</div>
-          </div>
-        </HTML> */}
+        <HTML fullscreen>
+          <ContainerTitleWebGL>
+            <TitleWebGL>Hey, welcome in my world !</TitleWebGL>
+          </ContainerTitleWebGL>
+        </HTML>
       </group>
     </Section>
   )

@@ -6,6 +6,8 @@ import HomeHeader from "../components/homePage/homeHeader"
 import HomeAbout from "../components/homePage/homeAbout"
 import HomeWorks from "../components/homePage/homeWorks"
 import HomeContact from "../components/homePage/homeContact"
+// SEO
+import SEO from "../components/seo"
 
 //hooks
 import useWindowSize from "../hooks/useWindowSize"
@@ -29,41 +31,41 @@ import {
   useGlobalDispatchContext,
 } from "../context/globalContext"
 
-const HomePanels = () => {
-  const transition = { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.9] }
+// const HomePanels = () => {
+//   const transition = { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.9] }
 
-  const [canScroll, setCanScroll] = useState(false)
+//   const [canScroll, setCanScroll] = useState(false)
 
-  useEffect(() => {
-    if (canScroll === false) {
-      document.querySelector("body").classList.add("no-scroll")
-    } else {
-      document.querySelector("body").classList.remove("no-scroll")
-    }
-  }, [canScroll])
+//   useEffect(() => {
+//     if (canScroll === false) {
+//       document.querySelector("body").classList.add("no-scroll")
+//     } else {
+//       document.querySelector("body").classList.remove("no-scroll")
+//     }
+//   }, [canScroll])
 
-  return (
-    <>
-      <HomePanelBackground
-        onAnimationComplete={() => setCanScroll(true)}
-        initial={{ height: 0 }}
-        animate={{
-          height: [0, window.innerHeight, 0],
-          top: [0, 0, window.innerHeight],
-        }}
-        exit={{
-          height: [0, window.innerHeight, 0],
-          top: [null, 0, 0],
-        }}
-        transition={{
-          ...transition,
-          duration: 2,
-          times: [0, 0.5, 1],
-        }}
-      ></HomePanelBackground>
-    </>
-  )
-}
+//   return (
+//     <>
+//       <HomePanelBackground
+//         onAnimationComplete={() => setCanScroll(true)}
+//         initial={{ height: 0 }}
+//         animate={{
+//           height: [0, window.innerHeight, 0],
+//           top: [0, 0, window.innerHeight],
+//         }}
+//         exit={{
+//           height: [0, window.innerHeight, 0],
+//           top: [null, 0, 0],
+//         }}
+//         transition={{
+//           ...transition,
+//           duration: 2,
+//           times: [0, 0.5, 1],
+//         }}
+//       ></HomePanelBackground>
+//     </>
+//   )
+// }
 
 const IndexPage = props => {
   //Hook to grab window size
@@ -87,16 +89,16 @@ const IndexPage = props => {
   }, [])
 
   // this useEffect works with the build but not whit development mode
-  if (typeof window !== `undefined`) {
-    useEffect(() => {
-      setBodyHeight()
-    }, [size.height])
-  }
+  // if (typeof window !== `undefined`) {
+  //   useEffect(() => {
+  //     setBodyHeight()
+  //   }, [size.height])
+  // }
 
   //set the height of the body.
-  // useEffect(() => {
-  //   setBodyHeight()
-  // }, [size.height])
+  useEffect(() => {
+    setBodyHeight()
+  }, [size.height])
 
   //Set the height of the body to the height of the scrolling div
   const setBodyHeight = () => {
@@ -142,14 +144,24 @@ const IndexPage = props => {
     allStrapiProjects: { nodes: projects },
   } = props.data
 
+  // const [loading, setLoading] = useState(true)
+
+  // useEffect(() => {
+  //   setTimeout(() => setLoading(false), 6000)
+  // }, [])
+
   return (
     <Layout>
+      <SEO
+        title="Home"
+        description="Front-end developer & designer UI/UX living in Paris, currently studying at HETIC and looking for new opportunities to learn and progress."
+      />
       <AppContainer ref={app}>
         <ScrollContainer ref={scrollContainer}>
           <HomeHeader onCursor={onCursor}></HomeHeader>
           <HomeWorks onCursor={onCursor} projects={projects}></HomeWorks>
           <HomeAbout onCursor={onCursor}></HomeAbout>
-          <HomeContact onCursor={onCursor}></HomeContact>
+          {/* <HomeContact onCursor={onCursor}></HomeContact> */}
         </ScrollContainer>
       </AppContainer>
 

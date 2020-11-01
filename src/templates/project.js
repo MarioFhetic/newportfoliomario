@@ -18,6 +18,8 @@ import { CloseSvg } from "../assets/svg/close"
 // hook
 import useWindowSize from "../hooks/useWindowSize"
 
+import SEO from "../components/seo"
+
 // import WebGL from "../webGL/webGL"
 // import { WebglContainer } from "../styles/homeStyles"
 
@@ -108,16 +110,16 @@ const Project = props => {
   }, [])
 
   // this useEffect works with the build but not whit development mode
-  if (typeof window !== `undefined`) {
-    useEffect(() => {
-      setBodyHeight()
-    }, [size.height])
-  }
+  // if (typeof window !== `undefined`) {
+  //   useEffect(() => {
+  //     setBodyHeight()
+  //   }, [size.height])
+  // }
 
   //set the height of the body.
-  // useEffect(() => {
-  //   setBodyHeight()
-  // }, [size.height])
+  useEffect(() => {
+    setBodyHeight()
+  }, [size.height])
 
   //Set the height of the body to the height of the scrolling div
   const setBodyHeight = () => {
@@ -213,6 +215,7 @@ const Project = props => {
 
   return (
     <Layout>
+      <SEO title={projects[0].title} description={projects[0].description} />
       <AnimatePresence>
         <AppContainer
           ref={app}
@@ -556,6 +559,7 @@ export const query = graphql`
     allStrapiProjects(filter: { id: { eq: $id } }) {
       nodes {
         title
+        description
         id
         url
         year

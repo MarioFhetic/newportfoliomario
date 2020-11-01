@@ -14,8 +14,9 @@
     "gatsby-plugin-manifest": "^2.2.48",
     "gatsby-plugin-offline": "^3.0.41",
     "gatsby-plugin-page-load-delay": "^0.1.2",
-    "gatsby-plugin-react-helmet": "^3.1.24",
+    "gatsby-plugin-react-helmet": "^3.3.14",
     "gatsby-plugin-sharp": "^2.6.40",
+    "gatsby-plugin-sitemap": "^2.4.17",
     "gatsby-plugin-styled-components": "^3.2.1",
     "gatsby-remark-images": "^3.3.33",
     "gatsby-source-filesystem": "^2.3.18",
@@ -37,7 +38,8 @@
     "react-three-fiber": "^4.2.12",
     "styled-components": "^5.0.1",
     "styled-normalize": "^8.0.7",
-    "three": "^0.118.3"
+    "three": "^0.118.3",
+    "use-progress": "^2.0.1"
   },
   "devDependencies": {
     "gatsby-plugin-root-import": "^2.0.5",
