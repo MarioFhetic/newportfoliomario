@@ -6,7 +6,10 @@ import { Canvas, useFrame } from "react-three-fiber"
 // useFrame => Loop pour l'animation
 
 // import { MeshWobbleMaterial, OrbitControls, Html } from "drei"
-import { HTML, useGLTFLoader, useProgress, OrbitControls} from "@react-three/drei"
+import { HTML, useGLTFLoader, useProgress } from "@react-three/drei"
+
+import { OrbitControls } from "drei"
+
 import { Section } from "./section"
 import { State } from "./state"
 
@@ -73,11 +76,11 @@ const HTMLContent = () => {
         <mesh ref={ref} position={[0, 0, 0]}>
           <Model />
         </mesh>
-        <HTML fullscreen>
+        {/* <HTML>
           <ContainerTitleWebGL>
             <TitleWebGL>Hey, welcome in my world !</TitleWebGL>
           </ContainerTitleWebGL>
-        </HTML>
+        </HTML> */}
       </group>
     </Section>
   )
@@ -96,8 +99,11 @@ const WebGL = () => {
         <Suspense fallback={null}>
           <HTMLContent></HTMLContent>
         </Suspense>
+        <OrbitControls enableZoom={false} />
+        {console.log(OrbitControls)}
       </Canvas>
-      <Loader/>
+
+      <Loader />
     </>
   )
 }
