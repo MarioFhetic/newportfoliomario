@@ -1,15 +1,44 @@
 import React, { useRef, useState, Suspense, useEffect } from "react"
+// css
+import webGLcss from "./webGl.css"
 
 import { Canvas, useFrame } from "react-three-fiber"
 // useFrame => Loop pour l'animation
 
 // import { MeshWobbleMaterial, OrbitControls, Html } from "drei"
-import { HTML, useGLTFLoader } from "@react-three/drei"
+import { HTML, useGLTFLoader, useProgress, OrbitControls} from "@react-three/drei"
 import { Section } from "./section"
 import { State } from "./state"
 
 //
 import { ContainerTitleWebGL, TitleWebGL } from "../../styles/homeStyles"
+
+// Loader
+import { a, useTransition } from "@react-spring/web"
+// import { useProgress } from "drei"
+
+function Loader() {
+  const { active, progress } = useProgress()
+  const transition = useTransition(active, {
+    from: { opacity: 1, progress: 0 },
+    leave: { opacity: 0 },
+    update: { progress },
+  })
+  return transition(
+    ({ progress, opacity }, active) =>
+      active && (
+        <a.div className="loading" style={{ opacity }}>
+          <div className="loading-bar-container">
+            <a.div className="loading-bar" style={{ width: progress }}>
+              <a.span className="loading-data">
+                {progress.to(p => `${p.toFixed(2)}%`)}
+              </a.span>
+            </a.div>
+          </div>
+        </a.div>
+      )
+  )
+}
 
 const Model = () => {
   const gltf = useGLTFLoader("/scene.gltf", true)
@@ -68,6 +97,7 @@ const WebGL = () => {
           <HTMLContent></HTMLContent>
         </Suspense>
       </Canvas>
+      <Loader/>
     </>
   )
 }
