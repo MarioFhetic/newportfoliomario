@@ -382,3 +382,13 @@ export const AccordionIcon = styled(motion.div)`
 `
 
 // END ACCORDION SECTION
+
+// Mask animation
+
+// export const MaskTitle = styled(motion.div)`
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   background-color: black;
+//   z-index: 1000;
+// `

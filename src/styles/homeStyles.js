@@ -145,12 +145,14 @@ export const HeaderWorks = styled(motion.h1)`
 
 export const ProjectsList = styled.div`
   /* background-color: pink; */
+  position: relative;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   ul {
     padding: 0;
+
     li {
       position: relative;
       list-style: none;
@@ -195,6 +197,10 @@ export const ProjectsList = styled.div`
 
         }
       }
+      :last-child
+    {
+      margin-bottom: 0rem !important;
+    }
     }
   }
   span {
@@ -211,13 +217,11 @@ export const NavVideos = styled.div`
   position: absolute;
   left: 0;
   bottom: 0;
-  left: 35%;
+  left: 25%;
   z-index: -3;
-  /* height: 100%; */
-  height: 75%;
-  /* width: 100%; */
-  width: 70%;
-  /* background: red; */
+  height: 100%;
+  width: 75%;
+  /* background-color: blue; */
   .reveal {
     position: absolute;
     width: 100%;
@@ -226,11 +230,13 @@ export const NavVideos = styled.div`
     bottom: 0;
     left: 0;
     /* z-index: 10; */
+    /* background-color: green; */
   }
   .video {
     /* background: yellow; */
     position: absolute;
     height: 100%;
+
     margin: 0;
     z-index: -1;
     video {

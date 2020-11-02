@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { motion } from "framer-motion"
 
 export const HeaderNav = styled.div`
   height: 0;
@@ -19,7 +20,7 @@ export const Menu = styled.div`
   cursor: pointer;
 `
 
-export const Logo = styled.div`
+export const Logo = styled(motion.div)`
   mix-blend-mode: difference;
   font-family: Montserrat sans-serif;
   span {

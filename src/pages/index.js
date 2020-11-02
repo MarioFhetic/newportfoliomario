@@ -158,7 +158,7 @@ const IndexPage = props => {
       />
       <AppContainer ref={app}>
         <ScrollContainer ref={scrollContainer}>
-          <HomeHeader onCursor={onCursor}></HomeHeader>
+          {/* <HomeHeader onCursor={onCursor}></HomeHeader> */}
           <HomeWorks onCursor={onCursor} projects={projects}></HomeWorks>
           <HomeAbout onCursor={onCursor}></HomeAbout>
           {/* <HomeContact onCursor={onCursor}></HomeContact> */}

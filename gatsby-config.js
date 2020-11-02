@@ -37,6 +37,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
+        icon: `src/assets/technoIcon/logosite.png`,
       },
     },
     `gatsby-plugin-styled-components`,
@@ -68,6 +69,7 @@ module.exports = {
     `gatsby-transformer-json`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-transition-link`,
 
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

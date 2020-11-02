@@ -19,7 +19,6 @@ const Header = ({ onCursor }) => {
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()
 
-
   // custom function toggle Theme
   const toggleTheme = () => {
     if (currentTheme === "dark") {
@@ -37,7 +36,7 @@ const Header = ({ onCursor }) => {
     <HeaderNav>
       <Container>
         <Flex spaceBetween noHeight>
-          <Logo>
+          <Logo whileTap={{ y: 30 }}>
             <span>MF.</span>
           </Logo>
           <Menu

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "gatsby"
+// import { Link } from "gatsby"
+import Link from "gatsby-plugin-transition-link"
 
 import { motion, useAnimation } from "framer-motion"
 
 //view
 import { useInView } from "react-intersection-observer"
+
+//
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
 // styled-component
 import { Container } from "../../styles/globalStyles"
@@ -130,7 +134,11 @@ const HomeWorks = ({ onCursor, projects }) => {
                 })
               }
             >
-              <Link to={`/${project.url}`}>
+              <AniLink fade duration={0.5} to={`/${project.url}`}>
+                {/* <Link to={`/${project.url}`}> 
+              {project.title}
+
+              </Link> */}
                 {/* <div>
                   <span className="arrow">
                     <svg
@@ -146,7 +154,7 @@ const HomeWorks = ({ onCursor, projects }) => {
                   </span> */}
                 {project.title}
                 {/* </div> */}
-              </Link>
+              </AniLink>
               {/* <motion.span
                 initial={{ opacity: 0, y: 10 }}
                 whileHover={{ opacity: 1, y: 30 }}
@@ -157,8 +165,23 @@ const HomeWorks = ({ onCursor, projects }) => {
             </motion.li>
           ))}
         </motion.ul>
+        <NavVideos>
+          <motion.div
+            animate={{ height: revealVideo.show ? 0 : "100%" }}
+            className="reveal"
+          ></motion.div>
+          <div className="video">
+            <video
+              src={require(`../../assets/video/${revealVideo.video}`)}
+              loop
+              muted
+              autoPlay
+            ></video>
+          </div>
+        </NavVideos>
       </ProjectsList>
-      <NavVideos>
+
+      {/* <NavVideos>
         <motion.div
           animate={{ height: revealVideo.show ? 0 : "100%" }}
           className="reveal"
@@ -171,7 +194,7 @@ const HomeWorks = ({ onCursor, projects }) => {
             autoPlay
           ></video>
         </div>
-      </NavVideos>
+      </NavVideos> */}
     </Container>
   )
 }

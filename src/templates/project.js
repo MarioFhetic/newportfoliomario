@@ -10,6 +10,9 @@ import {
   motion,
 } from "framer-motion"
 
+// Link animation
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+
 import { useInView } from "react-intersection-observer"
 // MOON/SUN ICONS
 import { CloseSvg } from "../assets/svg/close"
@@ -56,7 +59,7 @@ const Project = props => {
 
   const [firstImage, inView] = useInView({
     triggerOnce: true,
-    rootMargin: "-200px",
+    rootMargin: "-180px",
   })
 
   useEffect(() => {
@@ -69,7 +72,7 @@ const Project = props => {
 
   const [secondImage, secondView] = useInView({
     triggerOnce: true,
-    rootMargin: "-200px",
+    rootMargin: "-180px",
   })
 
   useEffect(() => {
@@ -82,7 +85,7 @@ const Project = props => {
 
   const [thirdImage, thirdView] = useInView({
     triggerOnce: true,
-    rootMargin: "-200px",
+    rootMargin: "-180px",
   })
 
   useEffect(() => {
@@ -122,10 +125,13 @@ const Project = props => {
   }, [size.height])
 
   //Set the height of the body to the height of the scrolling div
+  // I
   const setBodyHeight = () => {
-    document.body.style.height = `${
-      scrollContainer.current.getBoundingClientRect().height
-    }px`
+    if (scrollContainer.current) {
+      document.body.style.height = `${
+        scrollContainer.current.getBoundingClientRect().height
+      }px`
+    }
   }
 
   // Scrolling
@@ -163,7 +169,7 @@ const Project = props => {
   } = props.data
 
   const { next, prev } = props.pageContext
-  const transition = { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.9] }
+  const transition = { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.9], delay: 1 }
 
   // ACCORDION SECTION
   const [expanded, setExpanded] = useState(false)
@@ -211,19 +217,31 @@ const Project = props => {
       </>
     )
   }
+
+  const titleSlideUp = {
+    initial: { y: 200 },
+    animate: { y: 0 },
+  }
+
   // END ACCORDION SECTION
 
   return (
     <Layout>
       <SEO title={projects[0].title} description={projects[0].description} />
-      <AnimatePresence>
-        <AppContainer
-          ref={app}
+      {/* In AppContainer : 
           transition={{ ...transition }}
           initial={{ opacity: 0, skewY: 3, y: 100 }}
           animate={{ opacity: 1, skewY: 0, y: 0 }}
           exit={{ opacity: 0, skewY: 0, y: 0 }}
+       */}
+      <AnimatePresence>
+        <AppContainer
+          ref={app}
           key={projects[0].url}
+          transition={{ ...transition }}
+          initial={{ opacity: 0, skewY: 3, y: 100 }}
+          animate={{ opacity: 1, skewY: 0, y: 0 }}
+          exit={{ opacity: 0, skewY: 0, y: 0 }}
         >
           <BigContainerWrapperScrollProgress>
             <WrapperScrollProgress>
@@ -259,11 +277,11 @@ const Project = props => {
           <ScrollContainer ref={scrollContainer}>
             <header>
               <ContainerProject>
-                <Link to={`/`}>
-                  <ReturnButton>
+                <ReturnButton style={{ maxWidth: "100px" }}>
+                  <AniLink fade duration={0.5} to={`/`}>
                     <CloseSvg />
-                  </ReturnButton>
-                </Link>
+                  </AniLink>
+                </ReturnButton>
                 <TitleProject
                   transition={{ duration: 1, ease: [0.6, 0.05, -0.01, 0.9] }}
                   whileHover={{ letterSpacing: "0rem" }}
@@ -506,8 +524,16 @@ const Project = props => {
             <footer>
               <SeparatorLine />
               <ContainerNextPrevProject>
-                {prev && <Link to={`/${prev.url}`}>Previous Project</Link>}
-                {next && <Link to={`/${next.url}`}>Next project</Link>}
+                {prev && (
+                  <AniLink fade duration={1} to={`/${prev.url}`}>
+                    Previous Project
+                  </AniLink>
+                )}
+                {next && (
+                  <AniLink fade duration={1} to={`/${next.url}`}>
+                    Next project
+                  </AniLink>
+                )}
                 {/* <Link to={`${prev.url}`}>Previous Project</Link>  */}
               </ContainerNextPrevProject>
             </footer>

@@ -1,7 +1,8 @@
-import React, {useEffect} from "react"
+import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { useAnimation } from "framer-motion"
 
+import { Link } from "gatsby"
 
 import { Container } from "../../styles/globalStyles"
 import {
@@ -11,46 +12,42 @@ import {
   UnderlineWord,
 } from "../../styles/homeStyles"
 
-
-
 const HomeAbout = ({ onCursor }) => {
+  // First view
 
-   // First view
+  const aboutAnimation = useAnimation()
 
-   const aboutAnimation = useAnimation()
+  const [titleAbout, inView] = useInView({
+    triggerOnce: true, // renvoi que une seule fois false puis que des true
+    rootMargin: "-200px",
+  })
 
-   const [titleAbout, inView] = useInView({
-     triggerOnce: true, // renvoi que une seule fois false puis que des true
-     rootMargin: "-200px",
-   })
- 
-   useEffect(() => {
-     // si inView est set to true on run la variant "visible"
-     if (inView) aboutAnimation.start("visible")
-   }, [aboutAnimation, inView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
- 
-   // End First view
+  useEffect(() => {
+    // si inView est set to true on run la variant "visible"
+    if (inView) aboutAnimation.start("visible")
+  }, [aboutAnimation, inView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
 
-   // Second view
+  // End First view
 
-   const contentAboutAnimation = useAnimation()
+  // Second view
 
-   const [contentAbout, secondView] = useInView({
-     triggerOnce: true, // renvoi que une seule fois false puis que des true
-     rootMargin: "-200px",
-   })
- 
-   useEffect(() => {
-     // si inView est set to true on run la variant "visible"
-     if (secondView) contentAboutAnimation.start("visible")
-   }, [contentAboutAnimation, secondView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
- 
-   // End Second view
+  const contentAboutAnimation = useAnimation()
 
+  const [contentAbout, secondView] = useInView({
+    triggerOnce: true, // renvoi que une seule fois false puis que des true
+    rootMargin: "-200px",
+  })
+
+  useEffect(() => {
+    // si inView est set to true on run la variant "visible"
+    if (secondView) contentAboutAnimation.start("visible")
+  }, [contentAboutAnimation, secondView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
+
+  // End Second view
 
   return (
     <>
-      <Container>
+      <Container style={{ marginBottom: "5rem" }}>
         <TitleAbout
           ref={titleAbout}
           animate={aboutAnimation}
@@ -94,11 +91,18 @@ const HomeAbout = ({ onCursor }) => {
         >
           <TextAbout>
             As a student at the end of the 3th year of the{" "}
-            <UnderlineWord>HETIC</UnderlineWord> Grand School program, I am
-            looking for a 4 to 6-month internship from July 1st to October 4th.
-            I'm available for{" "}<UnderlineWord>freelance project</UnderlineWord>Feel free to{" "}<UnderlineWord>contact</UnderlineWord> me{" "}
+            <a href="https://www.hetic.net/">
+              <UnderlineWord>HETIC</UnderlineWord>
+            </a>{" "}
+            Grand School program, I am looking for a 4 to 6-month internship
+            from July 1st to October 4th. I'm available for{" "}
+            <a href="https://www.malt.fr/profile/mariofayolle">
+              <UnderlineWord>freelance project</UnderlineWord>
+            </a>{" "}
+            Feel free to <UnderlineWord>contact</UnderlineWord> me
           </TextAbout>
         </ContainerTextAbout>
+        <div>ddd</div>
       </Container>
       {/* <Container>
         <Flex>

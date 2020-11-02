@@ -103,3 +103,15 @@ export const Cursor = styled.div`
     border: 4px solid ${props => props.theme.primary_mouse_color} !important;
   }
 `
+
+// 404 Page
+
+export const Container404 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  }
+`
