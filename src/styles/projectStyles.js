@@ -8,6 +8,7 @@ export const AppContainer = styled(motion.div)`
   height: 100%;
   width: 100%;
   overflow: hidden;
+  // remove if sroll lag
 `
 
 export const ScrollContainer = styled.div`

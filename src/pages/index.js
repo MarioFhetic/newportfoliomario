@@ -8,6 +8,12 @@ import HomeWorks from "../components/homePage/homeWorks"
 import HomeContact from "../components/homePage/homeContact"
 // SEO
 import SEO from "../components/seo"
+// Apollo client
+//  // import { HttpLink } from "apollo-link-http"
+
+//  // import { createHttpLink } from "apollo-link-http"
+
+// Apollo
 
 //hooks
 import useWindowSize from "../hooks/useWindowSize"
@@ -158,10 +164,10 @@ const IndexPage = props => {
       />
       <AppContainer ref={app}>
         <ScrollContainer ref={scrollContainer}>
-          {/* <HomeHeader onCursor={onCursor}></HomeHeader> */}
+          <HomeHeader onCursor={onCursor}></HomeHeader>
           <HomeWorks onCursor={onCursor} projects={projects}></HomeWorks>
           <HomeAbout onCursor={onCursor}></HomeAbout>
-          {/* <HomeContact onCursor={onCursor}></HomeContact> */}
+          <HomeContact onCursor={onCursor}></HomeContact>
         </ScrollContainer>
       </AppContainer>
 
@@ -171,6 +177,60 @@ const IndexPage = props => {
 }
 
 export default IndexPage
+
+// const cache = new InMemoryCache()
+// const link = new HttpLink({
+//   uri: process.env.GATSBY_API_URL,
+// })
+// const client = new ApolloClient({
+//   cache,
+//   link,
+// })
+
+// client
+//   .query({
+//     query: gql`
+//       query getArticles {
+//         allStrapiProjects(filter: { featured: { eq: true } }) {
+//           nodes {
+//             title
+//             id
+//             url
+//             description
+//             urlvideo
+//           }
+//         }
+//       }
+//     `,
+//   })
+//   .then(result => console.log(result))
+
+// const httpLink = new HttpLink({
+//   uri: "http://localhost:8000/___graphql",
+//   // uri: process.env.GATSBY_API_URL,
+//   fetch,
+// })
+
+// const client = new ApolloClient({
+//   link: httpLink,
+//   cache: new InMemoryCache(),
+// })
+
+// client
+//   .query({
+//     query: gql`
+//       {
+//         allStrapiProjects {
+//           edges {
+//             node {
+//               title
+//             }
+//           }
+//         }
+//       }
+//     `,
+//   })
+//   .then(result => console.log(result))
 
 export const query = graphql`
   {
@@ -185,3 +245,7 @@ export const query = graphql`
     }
   }
 `
+
+{
+  console.log("query :", query)
+}

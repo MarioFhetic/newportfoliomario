@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import { useAnimation } from "framer-motion"
+import { motion } from "framer-motion"
 
 import { Link } from "gatsby"
 
@@ -19,7 +20,7 @@ const HomeAbout = ({ onCursor }) => {
 
   const [titleAbout, inView] = useInView({
     triggerOnce: true, // renvoi que une seule fois false puis que des true
-    rootMargin: "-200px",
+    rootMargin: "-170px",
   })
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const HomeAbout = ({ onCursor }) => {
 
   const [contentAbout, secondView] = useInView({
     triggerOnce: true, // renvoi que une seule fois false puis que des true
-    rootMargin: "-200px",
+    rootMargin: "-170px",
   })
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const HomeAbout = ({ onCursor }) => {
 
   return (
     <>
-      <Container style={{ marginBottom: "5rem" }}>
+      <Container>
         <TitleAbout
           ref={titleAbout}
           animate={aboutAnimation}
@@ -70,10 +71,9 @@ const HomeAbout = ({ onCursor }) => {
           My name is Mario, I'm 21
           <br /> and I come from Paris
         </TitleAbout>
-        <ContainerTextAbout
-          ref={contentAbout}
+        {/* ref={contentAbout}
           animate={contentAboutAnimation}
-          initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
+          initial="hidden" 
           variants={{
             visible: {
               opacity: 1,
@@ -87,22 +87,83 @@ const HomeAbout = ({ onCursor }) => {
               opacity: 0,
               y: 50,
             },
-          }}
-        >
-          <TextAbout>
-            As a student at the end of the 3th year of the{" "}
-            <a href="https://www.hetic.net/">
-              <UnderlineWord>HETIC</UnderlineWord>
-            </a>{" "}
-            Grand School program, I am looking for a 4 to 6-month internship
-            from July 1st to October 4th. I'm available for{" "}
-            <a href="https://www.malt.fr/profile/mariofayolle">
-              <UnderlineWord>freelance project</UnderlineWord>
-            </a>{" "}
-            Feel free to <UnderlineWord>contact</UnderlineWord> me
+          }} */}
+        <ContainerTextAbout>
+          <TextAbout
+            ref={contentAbout}
+            animate={contentAboutAnimation}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.2,
+                  delayChildren: 0.6,
+                  duration: 1,
+                  ease: [0.6, -0.05, 0.01, 0.9],
+                }, // cubic-bezier(0.77,0,0.18,1); // cubic-bezier(0.18,0.89,0.32,1.27);
+              },
+            }}
+            initial="hidden"
+          >
+            <motion.span
+              initial="hidden"
+              variants={{
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  skewX: 0,
+                },
+                hidden: {
+                  opacity: 0,
+                  y: -10,
+                  skewX: -15,
+                },
+              }}
+            >
+              As a student at the end of the 3th year of the Grand{" "}
+              <a href="https://www.hetic.net/">
+                <UnderlineWord>HETIC</UnderlineWord>
+              </a>{" "}
+            </motion.span>
+            <motion.span
+              initial="hidden"
+              variants={{
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  skewX: 0,
+                },
+                hidden: {
+                  opacity: 0,
+                  y: -10,
+                  skewX: -15,
+                },
+              }}
+            >
+              School program, I am looking for a 4 to 6-month internship from
+              July 1st to October 4th. I'm available for{" "}
+              <a href="https://www.malt.fr/profile/mariofayolle">
+                <UnderlineWord>freelance project</UnderlineWord>
+              </a>{" "}
+            </motion.span>
+            <motion.span
+              initial="hidden"
+              variants={{
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  skewX: 0,
+                },
+                hidden: {
+                  opacity: 0,
+                  y: -10,
+                  skewX: -15,
+                },
+              }}
+            >
+              Feel free to <UnderlineWord>contact</UnderlineWord> me
+            </motion.span>
           </TextAbout>
         </ContainerTextAbout>
-        <div>ddd</div>
       </Container>
       {/* <Container>
         <Flex>

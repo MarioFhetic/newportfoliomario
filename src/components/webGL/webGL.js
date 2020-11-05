@@ -20,17 +20,9 @@ import { ContainerTitleWebGL, TitleWebGL } from "../../styles/homeStyles"
 import { a, useTransition } from "@react-spring/web"
 // import { useProgress } from "drei"
 
-function Loader() {
-  const { active, progress } = useProgress()
-  const transition = useTransition(active, {
-    from: { opacity: 1, progress: 0 },
-    leave: { opacity: 0 },
-    update: { progress },
-  })
-  return transition(
-    ({ progress, opacity }, active) =>
-      active && (
-        <a.div className="loading" style={{ opacity }}>
+{
+  /* <a.div className="loading" style={{ opacity }}>
+          {console.log(transition)}
           <div className="loading-bar-container">
             <a.div className="loading-bar" style={{ width: progress }}>
               <a.span className="loading-data">
@@ -38,6 +30,43 @@ function Loader() {
               </a.span>
             </a.div>
           </div>
+        </a.div> */
+}
+
+function Loader() {
+  const [canScroll, setCanScroll] = useState(false)
+
+  useEffect(() => {
+    if (canScroll === false) {
+      document.querySelector("body").classList.add("no-scroll")
+    } else {
+      document.querySelector("body").classList.remove("no-scroll")
+    }
+  }, [canScroll])
+
+  const ouho = useRef()
+  {
+    // console.log(ouho.current)
+  }
+
+  const { active, progress } = useProgress()
+  const transition = useTransition(active, {
+    from: { opacity: 1, progress: 0 },
+    leave: { opacity: 0 },
+    update: { progress },
+  })
+
+  // `${p.toFixed(2)}%`
+
+  return transition(
+    ({ progress, opacity }, active) =>
+      active && (
+        <a.div className="loading" style={{ opacity }} ref={ouho}>
+          <a.span className="loading-data">
+            {progress.to(p =>
+              p === 100 ? setCanScroll(true) : `${p.toFixed(2)}%`
+            )}
+          </a.span>
         </a.div>
       )
   )

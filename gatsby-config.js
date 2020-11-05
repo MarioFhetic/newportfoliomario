@@ -53,7 +53,7 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://localhost:1337`,
+        apiURL: process.env.GATSBY_API_URL || "http://localhost:1337",
         queryLimit: 1000, // Default to 100
         contentTypes: [`projects`],
         //If using single types place them in this array.
@@ -76,3 +76,5 @@ module.exports = {
     // `gatsby-plugin-offline`,
   ],
 }
+
+console.log(process.env.API_URL)

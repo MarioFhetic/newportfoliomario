@@ -97,8 +97,9 @@ export const TextContent = styled.div`
 export const ContainerTextAbout = styled(motion.div)`
   display: flex;
   justify-content: center;
+  /* margin-bottom: 10rem; */
 `
-export const TextAbout = styled.p`
+export const TextAbout = styled(motion.p)`
   font-size: 2.5rem;
   line-height: 200%;
   font-weight: 300;
@@ -111,7 +112,7 @@ export const UnderlineWord = styled.span`
     content: "";
     position: absolute;
     width: 100%;
-    height: 2px;
+    height: 1px;
     display: block;
     right: 0;
     background: ${props => props.theme.primary_text_color};
@@ -242,6 +243,36 @@ export const NavVideos = styled.div`
     video {
       height: 100%;
       width: 100%;
+    }
+  }
+`
+
+// CONTACT SECTION
+
+export const ContainerSocial = styled(motion.div)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 4rem;
+
+  span {
+    font-size: 0.8rem;
+  }
+`
+
+export const ContainerSocialIcon = styled(motion.ul)`
+  display: flex;
+  list-style: none;
+  /* margin-bottom: 2rem; */
+  li {
+    padding-left: 1rem;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+    path {
+      color: ${props => props.theme.primary_text_color};
+      fill: ${props => props.theme.primary_text_color};
     }
   }
 `
