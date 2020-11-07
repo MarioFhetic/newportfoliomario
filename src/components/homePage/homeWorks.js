@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react"
 // import { Link } from "gatsby"
 import Link from "gatsby-plugin-transition-link"
 
+// Framer motion
 import { motion, useAnimation } from "framer-motion"
 
 //view
 import { useInView } from "react-intersection-observer"
 
-//
+// Link transition
 import AniLink from "gatsby-plugin-transition-link/AniLink"
+
+// Responsive
+import { useBreakpoint } from "gatsby-plugin-breakpoints"
 
 // styled-component
 import { Container } from "../../styles/globalStyles"
@@ -33,7 +37,8 @@ const HomeWorks = ({ onCursor, projects }) => {
 
   const [listOfProject, inView] = useInView({
     triggerOnce: true, // renvoi que une seule fois false puis que des true
-    rootMargin: "-200px",
+    // rootMargin: "-170px",
+    rootMargin: "-150px",
   })
 
   useEffect(() => {
@@ -49,7 +54,7 @@ const HomeWorks = ({ onCursor, projects }) => {
 
   const [titleWork, secondView] = useInView({
     triggerOnce: true, // renvoi que une seule fois false puis que des true
-    rootMargin: "-200px",
+    rootMargin: "-150px",
   })
 
   useEffect(() => {
@@ -58,6 +63,9 @@ const HomeWorks = ({ onCursor, projects }) => {
   }, [titleAppear, secondView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
 
   // End Second View
+
+  // responsive
+  const breakpoints = useBreakpoint()
 
   return (
     <Container>
@@ -81,8 +89,10 @@ const HomeWorks = ({ onCursor, projects }) => {
             },
           }}
         >
-          Here's small overview of <br />
-          my projects
+          {/* Here's small overview of my projects */}
+          {breakpoints.sm
+            ? "Here is one of my project"
+            : "Here's small overview of my projects"}
         </HeaderWorks>
       </ContainerHeaderWorks>
       <ProjectsList>
@@ -134,7 +144,8 @@ const HomeWorks = ({ onCursor, projects }) => {
                 })
               }
             >
-              <AniLink fade duration={0.5} to={`/${project.url}`}>
+              {/* duration={0.5} */}
+              <AniLink fade to={`/${project.url}`}>
                 {/* <Link to={`/${project.url}`}> 
               {project.title}
 
@@ -165,6 +176,7 @@ const HomeWorks = ({ onCursor, projects }) => {
             </motion.li>
           ))}
         </motion.ul>
+
         <NavVideos>
           <motion.div
             animate={{ height: revealVideo.show ? 0 : "100%" }}

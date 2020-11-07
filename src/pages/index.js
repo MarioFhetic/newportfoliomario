@@ -95,16 +95,16 @@ const IndexPage = props => {
   }, [])
 
   // this useEffect works with the build but not whit development mode
-  // if (typeof window !== `undefined`) {
-  //   useEffect(() => {
-  //     setBodyHeight()
-  //   }, [size.height])
-  // }
+  if (typeof window !== `undefined`) {
+    useEffect(() => {
+      setBodyHeight()
+    }, [size.height])
+  }
 
   //set the height of the body.
-  useEffect(() => {
-    setBodyHeight()
-  }, [size.height])
+  // useEffect(() => {
+  //   setBodyHeight()
+  // }, [size.height])
 
   //Set the height of the body to the height of the scrolling div
   const setBodyHeight = () => {
@@ -150,12 +150,6 @@ const IndexPage = props => {
     allStrapiProjects: { nodes: projects },
   } = props.data
 
-  // const [loading, setLoading] = useState(true)
-
-  // useEffect(() => {
-  //   setTimeout(() => setLoading(false), 6000)
-  // }, [])
-
   return (
     <Layout>
       <SEO
@@ -170,8 +164,6 @@ const IndexPage = props => {
           <HomeContact onCursor={onCursor}></HomeContact>
         </ScrollContainer>
       </AppContainer>
-
-      {/* <HomePanels></HomePanels> */}
     </Layout>
   )
 }
@@ -245,7 +237,3 @@ export const query = graphql`
     }
   }
 `
-
-{
-  console.log("query :", query)
-}

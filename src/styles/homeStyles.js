@@ -2,7 +2,8 @@ import styled, { css } from "styled-components"
 import { motion } from "framer-motion"
 
 export const Header = styled.div`
-  background: ${props => props.theme.background};
+  /* background: ${props => props.theme.background}; */
+  background: #121212;
   height: 100vh;
   width: 100%;
   position: relative;
@@ -12,13 +13,16 @@ export const Header = styled.div`
 export const WebglContainer = styled.div`
   height: 100%;
   width: 100%;
+  @media (max-width: 1025px) {
+    height: 85%;
+  }
 `
 
 export const Canvas = styled.canvas`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 80%;
   display: block;
 `
 
@@ -46,7 +50,6 @@ export const ContainerTitleWebGL = styled.div`
 
 export const TitleWebGL = styled.h1`
   color: red;
-  /* transform: translateY(-10%); */
 `
 
 // ABOUT SECTION
@@ -57,6 +60,17 @@ export const TitleAbout = styled(motion.h1)`
   background: ${props => props.theme.linear_gradient_title};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  // Max width of Mobile device
+  @media (max-width: 540px) {
+    font-size: 2.2rem;
+  }
+  /* @media (min-width: 1216px) {
+    max-width: 1152px;
+  }
+  @media (min-width: 1408px) {
+    max-width: 1244px;
+  } */
 `
 export const SvgContent = styled.div`
   display: flex;
@@ -103,6 +117,10 @@ export const TextAbout = styled(motion.p)`
   font-size: 2.5rem;
   line-height: 200%;
   font-weight: 300;
+  // Max width of Mobile device
+  @media (max-width: 540px) {
+    font-size: 1rem;
+  }
 `
 
 export const UnderlineWord = styled.span`
@@ -141,7 +159,17 @@ export const HeaderWorks = styled(motion.h1)`
   background: ${props => props.theme.linear_gradient_title};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  overflow: hidden;
+
+  // Max width of Mobile device
+  @media (max-width: 540px) {
+    font-size: 2.2rem;
+  }
+  /* @media (min-width: 1216px) {
+    max-width: 1152px;
+  }
+  @media (min-width: 1408px) {
+    max-width: 1244px;
+  } */
 `
 
 export const ProjectsList = styled.div`
@@ -151,6 +179,8 @@ export const ProjectsList = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+
+  
   ul {
     padding: 0;
 
@@ -161,26 +191,9 @@ export const ProjectsList = styled.div`
       text-transform: uppercase;
       font-weight: 900;
       margin-bottom: 4rem;
-      /* height: 96px;
-      line-height: 96px; */
-      /* overflow: hidden; */
-      /* padding-bottom: 1.2rem; */
-      /* .link {
-        color: ${props => props.theme.background};
-        position: relative;
-        display: flex;
-        align-items: center;
-        .arrow {
-          height: 76px;
-          margin-right: 8px;
-        }
-      }
-      svg {
-        width: 100px;
-        path {
-          fill: ${props => props.theme.background};
-        }
-      } */
+
+      
+
       .link
       {
         width: 100%;
@@ -202,6 +215,18 @@ export const ProjectsList = styled.div`
     {
       margin-bottom: 0rem !important;
     }
+
+      // Max width of Mobile device
+      @media (max-width: 540px) {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+      /* @media (min-width: 1216px) {
+        max-width: 1152px;
+      }
+      @media (min-width: 1408px) {
+        max-width: 1244px;
+      } */
     }
   }
   span {
@@ -253,10 +278,13 @@ export const ContainerSocial = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 
   span {
     font-size: 0.8rem;
+    @media (max-width: 540px) {
+      font-size: 0.5rem;
+    }
   }
 `
 

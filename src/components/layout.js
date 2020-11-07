@@ -43,16 +43,10 @@ a
 {
   color: ${props => props.theme.primary_text_color};
 }
-ul
-{
-}
-
 p
 {
   margin-block-start: 0em !important;
   margin-block-end: 0em !important;
-
-
 }
 
 div :focus
@@ -67,7 +61,7 @@ html {
   
 }
 body {
-  font-size: 16px;
+  font-size: 100%;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background: ${props => props.theme.background};
   overscroll-behavior: none;

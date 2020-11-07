@@ -20,6 +20,7 @@ import { CloseSvg } from "../assets/svg/close"
 
 // hook
 import useWindowSize from "../hooks/useWindowSize"
+import { useBreakpoint } from "gatsby-plugin-breakpoints"
 
 import SEO from "../components/seo"
 
@@ -59,7 +60,7 @@ const Project = props => {
 
   const [firstImage, inView] = useInView({
     triggerOnce: true,
-    rootMargin: "-180px",
+    rootMargin: "-160px",
   })
 
   useEffect(() => {
@@ -72,7 +73,7 @@ const Project = props => {
 
   const [secondImage, secondView] = useInView({
     triggerOnce: true,
-    rootMargin: "-180px",
+    rootMargin: "-160px",
   })
 
   useEffect(() => {
@@ -85,7 +86,7 @@ const Project = props => {
 
   const [thirdImage, thirdView] = useInView({
     triggerOnce: true,
-    rootMargin: "-180px",
+    rootMargin: "-160px",
   })
 
   useEffect(() => {
@@ -113,16 +114,16 @@ const Project = props => {
   }, [])
 
   // this useEffect works with the build but not whit development mode
-  // if (typeof window !== `undefined`) {
-  //   useEffect(() => {
-  //     setBodyHeight()
-  //   }, [size.height])
-  // }
+  if (typeof window !== `undefined`) {
+    useEffect(() => {
+      setBodyHeight()
+    }, [size.height])
+  }
 
   //set the height of the body.
-  useEffect(() => {
-    setBodyHeight()
-  }, [size.height])
+  // useEffect(() => {
+  //   setBodyHeight()
+  // }, [size.height])
 
   //Set the height of the body to the height of the scrolling div
   // I
@@ -171,6 +172,9 @@ const Project = props => {
   const { next, prev } = props.pageContext
   const transition = { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.9], delay: 1 }
 
+  // responsive
+  const breakpoints = useBreakpoint()
+
   // ACCORDION SECTION
   const [expanded, setExpanded] = useState(false)
   const Accordion = ({ expanded, setExpanded }) => {
@@ -218,11 +222,6 @@ const Project = props => {
     )
   }
 
-  const titleSlideUp = {
-    initial: { y: 200 },
-    animate: { y: 0 },
-  }
-
   // END ACCORDION SECTION
 
   return (
@@ -243,36 +242,48 @@ const Project = props => {
           animate={{ opacity: 1, skewY: 0, y: 0 }}
           exit={{ opacity: 0, skewY: 0, y: 0 }}
         >
-          <BigContainerWrapperScrollProgress>
-            <WrapperScrollProgress>
-              <ContainerScrollProgress
-                style={{
-                  scale,
-                }}
-              >
-                <ItemScrollProgress
+          {breakpoints.sm ? (
+            ""
+          ) : (
+            <BigContainerWrapperScrollProgress>
+              <WrapperScrollProgress>
+                <ContainerScrollProgress
                   style={{
-                    scaleY: scrollYProgress,
+                    scale,
                   }}
-                />
-              </ContainerScrollProgress>
-            </WrapperScrollProgress>
-          </BigContainerWrapperScrollProgress>
+                >
+                  <ItemScrollProgress
+                    style={{
+                      scaleY: scrollYProgress,
+                    }}
+                  />
+                </ContainerScrollProgress>
+              </WrapperScrollProgress>
+            </BigContainerWrapperScrollProgress>
+          )}
 
-          <ContainerRightSide>
-            <ContainerItemRightSide>
-              <TitleRightSide
-                transition={{ duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }}
-                whileHover={{ letterSpacing: "0rem" }}
-              >
-                Projects
-              </TitleRightSide>
-            </ContainerItemRightSide>
-          </ContainerRightSide>
+          {breakpoints.sm ? (
+            ""
+          ) : (
+            <ContainerRightSide>
+              <ContainerItemRightSide>
+                <TitleRightSide
+                  transition={{ duration: 0.5, ease: [0.6, 0.05, -0.01, 0.9] }}
+                  whileHover={{ letterSpacing: "0rem" }}
+                >
+                  Projects
+                </TitleRightSide>
+              </ContainerItemRightSide>
+            </ContainerRightSide>
+          )}
 
-          <ContainerLeftSideAccordion>
-            <Accordion expanded={expanded} setExpanded={setExpanded} />
-          </ContainerLeftSideAccordion>
+          {breakpoints.sm ? (
+            ""
+          ) : (
+            <ContainerLeftSideAccordion>
+              <Accordion expanded={expanded} setExpanded={setExpanded} />
+            </ContainerLeftSideAccordion>
+          )}
 
           <ScrollContainer ref={scrollContainer}>
             <header>
@@ -526,12 +537,12 @@ const Project = props => {
               <ContainerNextPrevProject>
                 {prev && (
                   <AniLink fade duration={1} to={`/${prev.url}`}>
-                    Previous Project
+                    {breakpoints.sm ? "Previous" : "Previous Project"}
                   </AniLink>
                 )}
                 {next && (
                   <AniLink fade duration={1} to={`/${next.url}`}>
-                    Next project
+                    {breakpoints.sm ? "Next" : "Next Project"}
                   </AniLink>
                 )}
                 {/* <Link to={`${prev.url}`}>Previous Project</Link>  */}

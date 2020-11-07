@@ -7,7 +7,7 @@
 // Ce fichier permet de wrap your site in additional components
 
 import React from "react"
-// import { GlobalProvider } from "./src/context/globalContext"
+import { GlobalProvider } from "./src/context/globalContext"
 // import { ApolloProvider } from "@apollo/client"
 // import client from "./src/utils/apolloClient"
 

@@ -18,20 +18,9 @@ import { ContainerTitleWebGL, TitleWebGL } from "../../styles/homeStyles"
 
 // Loader
 import { a, useTransition } from "@react-spring/web"
-// import { useProgress } from "drei"
 
-{
-  /* <a.div className="loading" style={{ opacity }}>
-          {console.log(transition)}
-          <div className="loading-bar-container">
-            <a.div className="loading-bar" style={{ width: progress }}>
-              <a.span className="loading-data">
-                {progress.to(p => `${p.toFixed(2)}%`)}
-              </a.span>
-            </a.div>
-          </div>
-        </a.div> */
-}
+//responsive
+import { useBreakpoint } from "gatsby-plugin-breakpoints"
 
 function Loader() {
   const [canScroll, setCanScroll] = useState(false)
@@ -44,28 +33,25 @@ function Loader() {
     }
   }, [canScroll])
 
-  const ouho = useRef()
-  {
-    // console.log(ouho.current)
-  }
-
-  const { active, progress } = useProgress()
+  const { active, progress, loaded } = useProgress()
   const transition = useTransition(active, {
     from: { opacity: 1, progress: 0 },
-    leave: { opacity: 0 },
+    leave: { opacity: 0, loaded },
     update: { progress },
   })
 
-  // `${p.toFixed(2)}%`
+  useEffect(() => {
+    if (loaded >= 3) {
+      setCanScroll(true)
+    }
+  })
 
   return transition(
     ({ progress, opacity }, active) =>
       active && (
-        <a.div className="loading" style={{ opacity }} ref={ouho}>
+        <a.div className="loading" style={{ opacity }}>
           <a.span className="loading-data">
-            {progress.to(p =>
-              p === 100 ? setCanScroll(true) : `${p.toFixed(2)}%`
-            )}
+            {progress.to(p => `${p.toFixed(2)}%`)}
           </a.span>
         </a.div>
       )
@@ -99,9 +85,13 @@ const HTMLContent = () => {
   // useFrame(() => (ref.current.rotation.x += 0.001))
   // useFrame(() => (ref.current.position.z += 0.01) && (ref.current.rotation.x += 0.001))
 
+  {
+    /* <group position={[0, 250, -70]} */
+  }
+
   return (
     <Section factor={1.5} offset={1}>
-      <group position={[0, 250, -50]}>
+      <group position={[0, 250, -10]}>
         <mesh ref={ref} position={[0, 0, 0]}>
           <Model />
         </mesh>
@@ -129,7 +119,6 @@ const WebGL = () => {
           <HTMLContent></HTMLContent>
         </Suspense>
         <OrbitControls enableZoom={false} />
-        {console.log(OrbitControls)}
       </Canvas>
 
       <Loader />

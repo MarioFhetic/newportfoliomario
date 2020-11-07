@@ -36,7 +36,7 @@ const Header = ({ onCursor }) => {
     <HeaderNav>
       <Container>
         <Flex spaceBetween noHeight>
-          <Logo whileTap={{ y: 30 }}>
+          <Logo whileTap={{ y: -30 }}>
             <span>MF.</span>
           </Logo>
           <Menu
@@ -44,7 +44,7 @@ const Header = ({ onCursor }) => {
             onMouseEnter={() => onCursor("hovered")}
             onMouseLeave={() => onCursor(onCursor)}
           >
-            <div>{currentTheme === "dark" ? <MoonSvg /> : <SunSvg />}</div>
+            <div>{currentTheme === "dark" ? <SunSvg /> : <MoonSvg />}</div>
             {/* <span>red</span> */}
           </Menu>
         </Flex>

@@ -13,6 +13,8 @@ import {
   UnderlineWord,
 } from "../../styles/homeStyles"
 
+import { useBreakpoint } from "gatsby-plugin-breakpoints"
+
 const HomeAbout = ({ onCursor }) => {
   // First view
 
@@ -45,6 +47,12 @@ const HomeAbout = ({ onCursor }) => {
   }, [contentAboutAnimation, secondView]) // on met une dépendance comme ça dès que inView est true ça trigger notre useEffect
 
   // End Second view
+  const breakpoints = useBreakpoint()
+
+  const retourLigne = () =>
+  {
+    return(<br/>)
+  }
 
   return (
     <>
@@ -69,7 +77,8 @@ const HomeAbout = ({ onCursor }) => {
           }}
         >
           My name is Mario, I'm 21
-          <br /> and I come from Paris
+           and I come from Paris
+
         </TitleAbout>
         {/* ref={contentAbout}
           animate={contentAboutAnimation}

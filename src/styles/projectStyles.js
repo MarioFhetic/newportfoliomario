@@ -78,6 +78,9 @@ export const TitleProject = styled(motion.h1)`
   font-size: 8rem;
   letter-spacing: -0.1rem;
   font-family: "Roboto", sans-serif;
+  @media (max-width: 720px) {
+    font-size: 5rem;
+  }
 `
 
 export const ContainerInfoProject = styled.div`
@@ -96,6 +99,12 @@ export const ContainerInfoProject = styled.div`
   }
   @media (min-width: 1408px) {
     max-width: 1244px;
+  }
+  @media (max-width: 720px) {
+    margin-top: 4rem;
+  }
+  @media (max-width: 500px) {
+    flex-direction: column;
   }
   :nth-child(2) {
     white-space: normal;
@@ -133,6 +142,9 @@ export const InfoProject = styled.ul`
   li:first-child {
     margin-bottom: 2rem;
     font-weight: 600;
+    @media (max-width: 500px) {
+      margin-bottom: 0rem;
+    }
 
     /* text-transform: uppercase; */
   }
@@ -146,6 +158,7 @@ export const ContainerIntroProject = styled(motion.div)`
   justify-content: center;
   margin: 0 auto;
   margin-top: 4rem;
+  padding: 0 5%;
 
   /* background-color: pink; */
   @media (min-width: 1024px) {
@@ -165,6 +178,9 @@ export const IntroProject = styled.p`
   width: 50%;
   font-family: "Roboto", sans-serif;
   text-align: justify;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `
 
 export const ContainerImage = styled(motion.div)`
@@ -187,6 +203,10 @@ export const ContainerNextPrevProject = styled.div`
   /* background-color: pink; */
   width: 70%;
   padding-bottom: 2rem;
+
+  @media (max-width: 540px) {
+    font-size: 1.5rem;
+  }
 `
 
 export const HomePanelBackground = styled(motion.div)`
@@ -236,6 +256,9 @@ export const BigContainerWrapperScrollProgress = styled.div`
   @media (min-width: 1408px) {
     max-width: 1244px;
   }
+  @media (max-width: 768px) {
+    left: 53%;
+  }
   /* background: blue; */
 `
 
@@ -283,6 +306,9 @@ export const ContainerRightSide = styled(motion.div)`
   @media (min-width: 1408px) {
     max-width: 1244px;
   }
+  @media (max-width: 768px) {
+    left: 47%;
+  }
   /* background: brown; */
   width: 100%;
 `
@@ -313,6 +339,9 @@ export const ContainerLeftSideAccordion = styled(motion.div)`
   }
   @media (min-width: 1408px) {
     max-width: 1244px;
+  }
+  @media (max-width: 768px) {
+    left: 53%;
   }
   /* background: yellow; */
   z-index: 100;
