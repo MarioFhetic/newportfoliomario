@@ -38,7 +38,7 @@ const HomeWorks = ({ onCursor, projects }) => {
   const [listOfProject, inView] = useInView({
     triggerOnce: true, // renvoi que une seule fois false puis que des true
     // rootMargin: "-170px",
-    rootMargin: "-150px",
+    rootMargin: "-130px",
   })
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const HomeWorks = ({ onCursor, projects }) => {
 
   const [titleWork, secondView] = useInView({
     triggerOnce: true, // renvoi que une seule fois false puis que des true
-    rootMargin: "-150px",
+    rootMargin: "-130px",
   })
 
   useEffect(() => {

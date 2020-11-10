@@ -80,6 +80,8 @@ export const TitleProject = styled(motion.h1)`
   font-family: "Roboto", sans-serif;
   @media (max-width: 720px) {
     font-size: 5rem;
+    margin-top: 2rem !important;
+    margin-bottom: 0rem !important;
   }
 `
 
@@ -88,7 +90,7 @@ export const ContainerInfoProject = styled.div`
   justify-content: space-evenly;
   margin: 0 auto;
   /* background-color: red; */
-  margin-top: 8rem;
+  margin-top: 4rem;
 
   /* background-color: pink; */
   @media (min-width: 1024px) {
@@ -170,9 +172,14 @@ export const ContainerIntroProject = styled(motion.div)`
   @media (min-width: 1408px) {
     max-width: 1244px;
   }
+  @media (min-width: 540px) {
+    margin-top: 0rem;
+  }
 `
 
 export const IntroProject = styled.p`
+  /* display: flex;
+  flex-direction: column; */
   font-size: 1rem;
   line-height: 200%;
   width: 50%;
@@ -181,32 +188,52 @@ export const IntroProject = styled.p`
   @media (max-width: 768px) {
     width: 90%;
   }
+  span {
+    display: inline-block;
+    margin-top: 2rem;
+  }
 `
 
 export const ContainerImage = styled(motion.div)`
   margin: 0 auto;
   margin-top: 4rem;
-
   width: 80%;
+  @media (max-width: 1025px) {
+    width: 100%;
+  }
 `
 export const ContainerNextPrevProject = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 1.5rem;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-fill-color: transparent;
-  -webkit--webkit-text-stroke-color: ${props => props.theme.primary_text_color};
+  /* -webkit-text-fill-color: transparent; */
 
+  transform: translateY(-50%);
   text-transform: uppercase;
   margin: 0 auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
   /* background-color: pink; */
   width: 70%;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
 
   @media (max-width: 540px) {
     font-size: 1.5rem;
+    padding-bottom: 6rem;
   }
+  a {
+    &:hover {
+      -webkit-text-fill-color: ${props => props.theme.background};
+      -webkit-text-stroke-width: 1px;
+      -webkit--webkit-text-stroke-color: ${props =>
+        props.theme.primary_text_color};
+    }
+  }
+
+  /* @media (min-width: 1025px) {
+    position: absolute;
+    left: 15%;
+    z-index: 10000;
+  } */
 `
 
 export const HomePanelBackground = styled(motion.div)`
@@ -234,9 +261,9 @@ export const SeparatorLine = styled(motion.div)`
   background: ${props => props.theme.primary_text_color};
   position: relative;
   margin: auto;
-  margin-top: 4rem;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
 `
-
 // Scroll Progress Section
 
 export const BigContainerWrapperScrollProgress = styled.div`
@@ -350,9 +377,10 @@ export const ContainerLeftSideAccordion = styled(motion.div)`
 export const TitleRightSide = styled(motion.h4)`
   transform: translateY(100%);
   text-transform: uppercase;
-  letter-spacing: 0.03rem;
+  letter-spacing: -0.1rem;
   width: 100px;
   font-weight: 400;
+  opacity: 0.7;
 `
 
 // ACCORDION SECTION

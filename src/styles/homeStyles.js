@@ -10,6 +10,23 @@ export const Header = styled.div`
   /* margin-bottom: 296px; */
 `
 
+export const ContainerScroll = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: -5%;
+  position: relative;
+  /* background-color: red; */
+
+  span {
+    svg {
+      path {
+        fill: ${props => props.theme.header_color};
+      }
+    }
+  }
+`
+
 export const WebglContainer = styled.div`
   height: 100%;
   width: 100%;
@@ -22,7 +39,7 @@ export const Canvas = styled.canvas`
   position: absolute;
   top: 0;
   left: 0;
-  height: 80%;
+  height: 100%;
   display: block;
 `
 
@@ -213,7 +230,7 @@ export const ProjectsList = styled.div`
       }
       :last-child
     {
-      margin-bottom: 0rem !important;
+      margin-bottom: 4rem !important;
     }
 
       // Max width of Mobile device

@@ -9,7 +9,15 @@ import useWindowSize from "../../hooks/useWindowSize"
 // context
 import { useGlobalStateContext } from "../../context/globalContext"
 
-import { Header, WebglContainer, Canvas } from "../../styles/homeStyles"
+//svg
+import { ArrowBottom } from "../../assets/svg/arrowBottom"
+
+import {
+  Header,
+  WebglContainer,
+  Canvas,
+  ContainerScroll,
+} from "../../styles/homeStyles"
 
 const HomeHeader = ({ onCursor }) => {
   let canvas = useRef(null)
@@ -88,6 +96,11 @@ const HomeHeader = ({ onCursor }) => {
     <Header>
       <WebglContainer>
         <WebGL></WebGL>
+        <ContainerScroll>
+          <span>
+            <ArrowBottom />
+          </span>
+        </ContainerScroll>
       </WebglContainer>
       {/* <Canvas ref={canvas} height={size.height} width={size.width} /> */}
       {/* <HeaderTitle>

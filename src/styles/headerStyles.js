@@ -12,10 +12,13 @@ export const HeaderNav = styled.div`
   left: 0;
   z-index: 99;
   background-color: red;
+  @media (max-width: 540px) {
+    top: 2rem;
+  }
 `
 
 export const Menu = styled.div`
-  background-color: red;
+  /* background-color: red; */
   width: 25px;
   cursor: pointer;
 `
@@ -25,5 +28,6 @@ export const Logo = styled(motion.div)`
   font-family: Montserrat sans-serif;
   span {
     mix-blend-mode: difference;
+    color: ${props => props.theme.header_color};
   }
 `

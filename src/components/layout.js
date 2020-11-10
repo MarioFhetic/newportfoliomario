@@ -88,6 +88,7 @@ const Layout = ({ children }) => {
   const darkTheme = {
     background: "#121212",
     primary_text_color: "#F9F9F9",
+    header_color: "white",
     opposite_primary_text_color: "#121212",
     primary_mouse_color: "#F9F9F9",
     hovered_mouse_color: "#7e57c2",
@@ -102,6 +103,7 @@ const Layout = ({ children }) => {
   }
   const lightTheme = {
     background: "#f2efe8",
+    header_color: "#EFD69B",
     primary_text_color: "#121212",
     opposite_primary_text_color: "#F9F9F9",
 

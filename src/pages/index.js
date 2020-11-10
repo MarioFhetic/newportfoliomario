@@ -9,9 +9,11 @@ import HomeContact from "../components/homePage/homeContact"
 // SEO
 import SEO from "../components/seo"
 // Apollo client
-//  // import { HttpLink } from "apollo-link-http"
+import { ApolloClient, InMemoryCache } from "@apollo/client"
+import { HttpLink } from "apollo-link-http"
+import { gql } from "@apollo/client"
 
-//  // import { createHttpLink } from "apollo-link-http"
+import { createHttpLink } from "apollo-link-http"
 
 // Apollo
 
@@ -95,16 +97,16 @@ const IndexPage = props => {
   }, [])
 
   // this useEffect works with the build but not whit development mode
-  if (typeof window !== `undefined`) {
-    useEffect(() => {
-      setBodyHeight()
-    }, [size.height])
-  }
+  // if (typeof window !== `undefined`) {
+  //   useEffect(() => {
+  //     setBodyHeight()
+  //   }, [size.height])
+  // }
 
   //set the height of the body.
-  // useEffect(() => {
-  //   setBodyHeight()
-  // }, [size.height])
+  useEffect(() => {
+    setBodyHeight()
+  }, [size.height])
 
   //Set the height of the body to the height of the scrolling div
   const setBodyHeight = () => {
@@ -169,60 +171,6 @@ const IndexPage = props => {
 }
 
 export default IndexPage
-
-// const cache = new InMemoryCache()
-// const link = new HttpLink({
-//   uri: process.env.GATSBY_API_URL,
-// })
-// const client = new ApolloClient({
-//   cache,
-//   link,
-// })
-
-// client
-//   .query({
-//     query: gql`
-//       query getArticles {
-//         allStrapiProjects(filter: { featured: { eq: true } }) {
-//           nodes {
-//             title
-//             id
-//             url
-//             description
-//             urlvideo
-//           }
-//         }
-//       }
-//     `,
-//   })
-//   .then(result => console.log(result))
-
-// const httpLink = new HttpLink({
-//   uri: "http://localhost:8000/___graphql",
-//   // uri: process.env.GATSBY_API_URL,
-//   fetch,
-// })
-
-// const client = new ApolloClient({
-//   link: httpLink,
-//   cache: new InMemoryCache(),
-// })
-
-// client
-//   .query({
-//     query: gql`
-//       {
-//         allStrapiProjects {
-//           edges {
-//             node {
-//               title
-//             }
-//           }
-//         }
-//       }
-//     `,
-//   })
-//   .then(result => console.log(result))
 
 export const query = graphql`
   {

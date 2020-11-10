@@ -5,7 +5,7 @@ import state from "./state"
 
 const offsetContext = createContext(0)
 
-function Section({ children, offset, factor, ...props }) {
+function Section({ children, mobile, offset, factor, ...props }) {
   const { offset: parentOffset, sectionHeight, aspect } = useSection()
   const ref = useRef()
   offset = offset !== undefined ? offset : parentOffset

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import { HeaderNav, Menu, Logo } from "../styles/headerStyles"
+import { HeaderNav, Menu, Logo, ContainerScroll } from "../styles/headerStyles"
 import { Container, Flex } from "../styles/globalStyles"
 import { motion } from "framer-motion"
 
@@ -33,23 +33,25 @@ const Header = ({ onCursor }) => {
   }, [currentTheme])
 
   return (
-    <HeaderNav>
-      <Container>
-        <Flex spaceBetween noHeight>
-          <Logo whileTap={{ y: -30 }}>
-            <span>MF.</span>
-          </Logo>
-          <Menu
-            onClick={toggleTheme}
-            onMouseEnter={() => onCursor("hovered")}
-            onMouseLeave={() => onCursor(onCursor)}
-          >
-            <div>{currentTheme === "dark" ? <SunSvg /> : <MoonSvg />}</div>
-            {/* <span>red</span> */}
-          </Menu>
-        </Flex>
-      </Container>
-    </HeaderNav>
+    <>
+      <HeaderNav>
+        <Container>
+          <Flex spaceBetween noHeight>
+            <Logo whileTap={{ y: -30 }}>
+              <span>MF.</span>
+            </Logo>
+            <Menu
+              onClick={toggleTheme}
+              onMouseEnter={() => onCursor("hovered")}
+              onMouseLeave={() => onCursor(onCursor)}
+            >
+              <div>{currentTheme === "dark" ? <SunSvg /> : <MoonSvg />}</div>
+              {/* <span>red</span> */}
+            </Menu>
+          </Flex>
+        </Container>
+      </HeaderNav>
+    </>
   )
 }
 

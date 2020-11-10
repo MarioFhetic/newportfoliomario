@@ -10,7 +10,7 @@ import { HTML, useGLTFLoader, useProgress } from "@react-three/drei"
 
 import { OrbitControls } from "drei"
 
-import { Section } from "./section"
+import { Section, useSection } from "./section"
 import { State } from "./state"
 
 //
@@ -79,6 +79,7 @@ const Lights = () => {
 
 const HTMLContent = () => {
   const ref = useRef()
+  let ouho = useSection()
   // useFrame est différent useEffect..ça vient de react-three-fiber
   // useFrame(() => (ref.current.rotation.y += 0.001))
 
@@ -91,16 +92,29 @@ const HTMLContent = () => {
 
   return (
     <Section factor={1.5} offset={1}>
-      <group position={[0, 250, -10]}>
-        <mesh ref={ref} position={[0, 0, 0]}>
-          <Model />
-        </mesh>
-        {/* <HTML>
+      {ouho.mobile ? (
+        <group position={[0, 250, -70]}>
+          <mesh ref={ref} position={[0, 0, 0]}>
+            <Model />
+          </mesh>
+          {/* <HTML>
           <ContainerTitleWebGL>
             <TitleWebGL>Hey, welcome in my world !</TitleWebGL>
           </ContainerTitleWebGL>
         </HTML> */}
-      </group>
+        </group>
+      ) : (
+        <group position={[0, 250, -10]}>
+          <mesh ref={ref} position={[0, 0, 0]}>
+            <Model />
+          </mesh>
+          {/* <HTML>
+            <ContainerTitleWebGL>
+              <TitleWebGL>SCROLL</TitleWebGL>
+            </ContainerTitleWebGL>
+          </HTML> */}
+        </group>
+      )}
     </Section>
   )
 }

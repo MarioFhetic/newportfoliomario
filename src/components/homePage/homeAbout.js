@@ -22,7 +22,7 @@ const HomeAbout = ({ onCursor }) => {
 
   const [titleAbout, inView] = useInView({
     triggerOnce: true, // renvoi que une seule fois false puis que des true
-    rootMargin: "-170px",
+    rootMargin: "-130px",
   })
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const HomeAbout = ({ onCursor }) => {
 
   const [contentAbout, secondView] = useInView({
     triggerOnce: true, // renvoi que une seule fois false puis que des true
-    rootMargin: "-170px",
+    rootMargin: "-130px",
   })
 
   useEffect(() => {
@@ -49,9 +49,8 @@ const HomeAbout = ({ onCursor }) => {
   // End Second view
   const breakpoints = useBreakpoint()
 
-  const retourLigne = () =>
-  {
-    return(<br/>)
+  const retourLigne = () => {
+    return <br />
   }
 
   return (
@@ -76,9 +75,7 @@ const HomeAbout = ({ onCursor }) => {
             },
           }}
         >
-          My name is Mario, I'm 21
-           and I come from Paris
-
+          My name is Mario, I'm 21 and I come from Paris
         </TitleAbout>
         {/* ref={contentAbout}
           animate={contentAboutAnimation}
@@ -128,7 +125,7 @@ const HomeAbout = ({ onCursor }) => {
                 },
               }}
             >
-              As a student at the end of the 3th year of the Grand{" "}
+              As a student of the 4th year of the Grand{" "}
               <a href="https://www.hetic.net/">
                 <UnderlineWord>HETIC</UnderlineWord>
               </a>{" "}
@@ -149,9 +146,10 @@ const HomeAbout = ({ onCursor }) => {
               }}
             >
               School program, I am looking for a 4 to 6-month internship from
-              July 1st to October 4th. I'm available for{" "}
+              June to December always motivated for new opportunities to learn
+              and progress. I'm available for{" "}
               <a href="https://www.malt.fr/profile/mariofayolle">
-                <UnderlineWord>freelance project</UnderlineWord>
+                <UnderlineWord>freelance project.</UnderlineWord>
               </a>{" "}
             </motion.span>
             <motion.span
@@ -169,7 +167,12 @@ const HomeAbout = ({ onCursor }) => {
                 },
               }}
             >
-              Feel free to <UnderlineWord>contact</UnderlineWord> me
+              <br />
+              Feel free to{" "}
+              <a href="mailto:mario.fayolle@outlook.fr">
+                <UnderlineWord>contact</UnderlineWord>
+              </a>{" "}
+              me !
             </motion.span>
           </TextAbout>
         </ContainerTextAbout>

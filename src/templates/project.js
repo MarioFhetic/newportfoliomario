@@ -55,6 +55,8 @@ import {
   AccordionIcon,
 } from "../styles/projectStyles"
 
+import { UnderlineWord } from "../styles/homeStyles"
+
 const Project = props => {
   const animation = useAnimation()
 
@@ -93,6 +95,66 @@ const Project = props => {
     if (thirdView) animationthird.start("visible")
   }, [animationthird, thirdView])
 
+  // Fourth animation
+
+  const animationFourth = useAnimation()
+
+  const [fourthImage, fourthView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-160px",
+  })
+
+  useEffect(() => {
+    if (fourthView) animationFourth.start("visible")
+  }, [animationFourth, fourthView])
+
+  //
+
+  // Fourth animation
+
+  const animationFive = useAnimation()
+
+  const [fiveImage, fiveView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-160px",
+  })
+
+  useEffect(() => {
+    if (fiveView) animationFive.start("visible")
+  }, [animationFive, fiveView])
+
+  //
+
+  // Fourth animation
+
+  const animationSix = useAnimation()
+
+  const [sixImage, sixView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-160px",
+  })
+
+  useEffect(() => {
+    if (sixView) animationSix.start("visible")
+  }, [animationSix, sixView])
+
+  //
+
+  // Fourth animation
+
+  const animationSeven = useAnimation()
+
+  const [sevenImage, sevenView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-160px",
+  })
+
+  useEffect(() => {
+    if (sevenView) animationSeven.start("visible")
+  }, [animationSeven, sevenView])
+
+  //
+
   //Hook to grab window size
   const size = useWindowSize()
 
@@ -114,16 +176,16 @@ const Project = props => {
   }, [])
 
   // this useEffect works with the build but not whit development mode
-  if (typeof window !== `undefined`) {
-    useEffect(() => {
-      setBodyHeight()
-    }, [size.height])
-  }
+  // if (typeof window !== `undefined`) {
+  //   useEffect(() => {
+  //     setBodyHeight()
+  //   }, [size.height])
+  // }
 
   //set the height of the body.
-  // useEffect(() => {
-  //   setBodyHeight()
-  // }, [size.height])
+  useEffect(() => {
+    setBodyHeight()
+  }, [size.height])
 
   //Set the height of the body to the height of the scrolling div
   // I
@@ -227,12 +289,7 @@ const Project = props => {
   return (
     <Layout>
       <SEO title={projects[0].title} description={projects[0].description} />
-      {/* In AppContainer : 
-          transition={{ ...transition }}
-          initial={{ opacity: 0, skewY: 3, y: 100 }}
-          animate={{ opacity: 1, skewY: 0, y: 0 }}
-          exit={{ opacity: 0, skewY: 0, y: 0 }}
-       */}
+
       <AnimatePresence>
         <AppContainer
           ref={app}
@@ -301,8 +358,19 @@ const Project = props => {
                 </TitleProject>
               </ContainerProject>
               <ContainerIntroProject>
-                <IntroProject>{projects[0].description_project}</IntroProject>
+                <IntroProject>
+                  {projects[0].description_project}
+                  <br />
+                  {projects[0].website && (
+                    <UnderlineWord>
+                      <a href={`${projects[0].website}`}>view website</a>
+                    </UnderlineWord>
+                  )}
+                </IntroProject>
               </ContainerIntroProject>
+
+              {/* Website */}
+
               <ContainerInfoProject>
                 <InfoProject>
                   <li>{projects[0].year}</li>
@@ -425,8 +493,8 @@ const Project = props => {
               )}
               {projects[0].fourthImage && (
                 <ContainerImage
-                  ref={thirdImage}
-                  animate={animationthird}
+                  ref={fourthImage}
+                  animate={animationFourth}
                   initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
                   variants={{
                     visible: {
@@ -452,8 +520,8 @@ const Project = props => {
               )}
               {projects[0].fifthImage && (
                 <ContainerImage
-                  ref={thirdImage}
-                  animate={animationthird}
+                  ref={fiveImage}
+                  animate={animationFive}
                   initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
                   variants={{
                     visible: {
@@ -479,8 +547,8 @@ const Project = props => {
               )}
               {projects[0].sixImage && (
                 <ContainerImage
-                  ref={thirdImage}
-                  animate={animationthird}
+                  ref={sixImage}
+                  animate={animationSix}
                   initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
                   variants={{
                     visible: {
@@ -506,8 +574,8 @@ const Project = props => {
               )}
               {projects[0].sevenImage && (
                 <ContainerImage
-                  ref={thirdImage}
-                  animate={animationthird}
+                  ref={sevenImage}
+                  animate={animationSeven}
                   initial="hidden" // initial est set à hidden donc il sera caché avec un y de 72 à la base
                   variants={{
                     visible: {
@@ -545,47 +613,12 @@ const Project = props => {
                     {breakpoints.sm ? "Next" : "Next Project"}
                   </AniLink>
                 )}
-                {/* <Link to={`${prev.url}`}>Previous Project</Link>  */}
               </ContainerNextPrevProject>
             </footer>
           </ScrollContainer>
         </AppContainer>
       </AnimatePresence>
-      {/* <Panels /> */}
     </Layout>
-  )
-}
-
-const Panels = () => {
-  const transition = { duration: 0.8, ease: [0.6, -0.05, 0.01, 0.9] }
-
-  return (
-    <>
-      {/* <LeftPanelBackground
-        initial={{ height: 0 }}
-        animate={{ height: [0, window.innerHeight, 0], bottom: [null, 0, 0] }}
-        exit={{ height: [0, window.innerHeight, 0], top: [null, 0, 0] }}
-        transition={{
-          ...transition,
-          duration: 2,
-          times: [0, 0.5, 1],
-          delay: 0.3,
-        }}
-      ></LeftPanelBackground> */}
-      <RightPanelBackground
-        initial={{ height: 0 }}
-        animate={{
-          height: [0, window.innerHeight, 0],
-          bottom: [0, 0, window.innerHeight],
-        }}
-        exit={{ height: [0, window.innerHeight, 0], bottom: [null, 0, 0] }}
-        transition={{
-          ...transition,
-          duration: 2,
-          times: [0, 0.5, 1],
-        }}
-      ></RightPanelBackground>
-    </>
   )
 }
 
@@ -599,53 +632,54 @@ export const query = graphql`
         description
         id
         url
+        website
         year
         role
         firstImage {
           childImageSharp {
-            fluid(maxWidth: 4000, quality: 100) {
+            fluid(maxWidth: 2000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
         }
         secondImage {
           childImageSharp {
-            fluid(maxWidth: 4000, quality: 100) {
+            fluid(maxWidth: 2000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
         }
         thirdImage {
           childImageSharp {
-            fluid(maxWidth: 4000, quality: 100) {
+            fluid(maxWidth: 2000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
         }
         fourthImage {
           childImageSharp {
-            fluid(maxWidth: 4000, quality: 100) {
+            fluid(maxWidth: 2000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
         }
         fifthImage {
           childImageSharp {
-            fluid(maxWidth: 4000, quality: 100) {
+            fluid(maxWidth: 2000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
         }
         sixImage {
           childImageSharp {
-            fluid(maxWidth: 4000, quality: 100) {
+            fluid(maxWidth: 2000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
         }
         sevenImage {
           childImageSharp {
-            fluid(maxWidth: 4000, quality: 100) {
+            fluid(maxWidth: 2000, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }
@@ -659,15 +693,3 @@ export const query = graphql`
     }
   }
 `
-// DYNAMICLY IMAGE
-
-// images {
-//   id
-//   image {
-//     childImageSharp {
-//       fluid(maxWidth: 2000, quality: 100) {
-//         ...GatsbyImageSharpFluid
-//       }
-//     }
-//   }
-// }
